@@ -13,6 +13,33 @@
         <li class="nav-item me-2">
           <a class="nav-link active" href="/">Home</a>
         </li>
+ <% if user_signed_in? || admin_signed_in? %>
+          <% if admin_signed_in? %>
+            <li class="nav-item">
+              <span class="navbar-text nav-link"><%= current_admin.email%></span>
+            </li>
+            <li class="nav-item">
+             <button type="button" class=" btn-success nav-link ">Admin</button>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <span class="navbar-text nav-link"><%= current_user.email%></span>
+            </li>
+             <li class="nav-item">
+             <button type="button" class="btn-info nav-link text-light">Usuário</button>
+            </li>
+          <% end %>
+
+
+        <li class="nav-item">
+            <%= button_to "Sair", destroy_user_session_path, method: :delete, class: 'btn-danger nav-link text-light btn-lg ps-2 pe-2' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+          <%= button_to "Entrar", new_user_session_path, method: :get, class: 'btn-secondary nav-link btn-lg ps-4 pe-4' %>
+        </li>
+        <% end %>
+
       </ul>
     </div>
   </div>

@@ -1,9 +1,18 @@
+*{
+  user-select: none;
+}
 body{
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   position: relative;
-  min-height: calc(100vh + 3rem);
+  min-height: calc(100vh + 20rem);
   background-color: #fafafa;
 }
+
+header {
+  position: sticky;
+  top: 0;
+}
+
 
 footer {
   position: absolute;
