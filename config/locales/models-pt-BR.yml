@@ -1,0 +1,32 @@
+  pt-BR:
+    activerecord:
+      models:
+        warehouse: "Galpão"
+        supplier: "Fornecedor"
+        order: "Pedido"
+      attributes:
+        warehouse:
+          name: "Nome"
+          description: "Descrição"
+          area: "Área"
+          address: "Endereço"
+          code: "Código"
+          zip_code: "CEP"
+          city: "Cidade"
+        supplier:
+          corporate_name: "Razão Social"
+          brand_name: "Nome Fantasia"
+          registration_number: "CNPJ"
+          full_address: "Endereço"
+          city: "Cidade"
+          state: "Estado"
+          email : "E-mail"
+        order:
+          warehouse_id: "Galpão"
+          warehouse: "Galpão"
+          supplier_id: "Fornecedor"
+          supplier: "Fornecedor"
+          user_id: "Usuário"
+          user: "Usuário"
+          estimated_delivery_date: "Data Prevista de Entrega"
+
