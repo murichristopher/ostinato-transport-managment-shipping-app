@@ -5,6 +5,7 @@ RSpec.describe TransportCompany, type: :model do
     context "presence" do
       it "false when 'trading_name' is empty" do
         transport_company = TransportCompany.new(trading_name: '')
+
         transport_company.valid?
 
         res = transport_company.errors[:trading_name]
@@ -46,6 +47,17 @@ RSpec.describe TransportCompany, type: :model do
         res = transport_company.errors[:full_address]
 
         expect(res).to include("não pode ficar em branco")
+      end
+
+      it 'true when all required attributes are fullfilled' do
+        transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "34028316000103", full_address: "Rua dos Andares, 294")
+
+        transport_company.valid?
+
+        res = transport_company.errors.any?
+
+        expect(res).to(be_falsey)
+        expect(transport_company).to(be_valid)
       end
     end
 
