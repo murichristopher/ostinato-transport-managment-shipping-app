@@ -20,6 +20,8 @@ describe 'Usuário visualiza transportadoras' do
     click_on("Transportadoras")
 
     expect(page).to have_content("SEDEX")
+    expect(page).to have_content("SEDEX DISTRIBUICOES LTDA")
+    expect(page).to have_content("34028316000103")
     expect(page).to have_content("sedex.com.br")
   end
 

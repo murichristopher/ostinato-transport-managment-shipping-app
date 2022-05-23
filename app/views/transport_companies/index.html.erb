@@ -4,12 +4,34 @@
 </div>
 <hr>
 
-
-<% @transport_companies.any? && @transport_companies.each do |transport_company| %>
-    <%= transport_company.trading_name %>
-        <%= transport_company.domain %>
+<div class="row scroll">
+<% @transport_companies.each do |transport_company| %>
+  <div class="col-lg-4">
+  <div class="card mb-3" >
+  <div class="card-header bg-success text-white">
+      Ativo
+    </div>
+    <div class="card-body">
+      <h3 class="card-title fs-2"><%= transport_company.trading_name %></h3>
+      <ul class="list-group list-group-flush">
+      <li class="list-group-item">Razão Social: <%= transport_company.company_name%></li>
+      <li class="list-group-item">CNPJ: <%= transport_company.registration_number%></li>
+      <li class="list-group-item"><%= transport_company.full_address%>
+      <li class="list-group-item">Domínio: <%= transport_company.domain%>
+  </li>
+    </ul>
+      <%= link_to "Ver detalhes", transport_company, class:"btn btn-primary mt-2"%>
+      <p class="card-text mt-2 fs-6"><small class="text-muted">Atualizado em <%=  transport_company[:updated_at].strftime("%d/%m/%Y")  %></small></p>
+    </div>
+  </div>
+  </div>
 <% end %>
+</div>
+</div>
+
 
 <% if @transport_companies.empty? %>
   <p>Nenhuma transportadora cadastrada</p>
 <% end %>
+
+
