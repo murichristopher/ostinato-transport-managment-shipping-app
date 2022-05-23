@@ -38,3 +38,10 @@ footer{
 }
 
 
+.admin-dash .card{
+  max-width: 18rem;
+}
+
+.centered{
+  text-align: center;
+}

@@ -7,7 +7,7 @@ describe 'Usuário visualiza transportadoras' do
 
     visit(root_path)
 
-    expect(page).not_to have_content("Transportadoras")
+    expect(page).not_to have_content("Ver transportadoras")
   end
 
   it 'com sucesso' do
@@ -17,7 +17,7 @@ describe 'Usuário visualiza transportadoras' do
     login_as(admin, scope: :admin)
     visit(root_path)
 
-    click_on("Transportadoras")
+    click_on("Ver transportadoras")
 
     expect(page).to have_content("SEDEX")
     expect(page).to have_content("SEDEX DISTRIBUICOES LTDA")
@@ -30,7 +30,7 @@ describe 'Usuário visualiza transportadoras' do
     login_as(admin)
 
     visit(root_path)
-    click_on("Transportadoras")
+    click_on("Ver transportadoras")
 
     expect(page).to have_content("Nenhuma transportadora cadastrada")
   end

@@ -7,7 +7,7 @@ describe "Admin registra uma transportadora" do
 
     visit("/")
 
-    click_on("Transportadoras")
+    click_on("Ver transportadoras")
 
     click_on("Cadastrar Transportadora")
 
@@ -34,7 +34,7 @@ admin = Admin.create!(email:"joao@sistemadefrete.com.br", password:"123456")
 
     visit("/")
 
-    click_on("Transportadoras")
+    click_on("Ver transportadoras")
 
     click_on("Cadastrar Transportadora")
 

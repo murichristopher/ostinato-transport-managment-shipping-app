@@ -1,9 +1,9 @@
-<h1>Seja Bem vindo!<h1>
 
 <% if admin_signed_in? %>
-  <%= link_to "Transportadoras", transport_companies_path%>
+  <%= render 'shared/home/user_sessions/admin'%>
+<% elsif user_signed_in? && current_user.linked? %>
+  <%= render 'shared/home/user_sessions/user'%>
+<% else %>
+  <%= render 'shared/home/user_sessions/guest'%>
 <% end %>
 
-<% if user_signed_in? %>
-  <p>oii</p>
-<% end %>

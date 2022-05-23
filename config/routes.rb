@@ -4,10 +4,9 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-
   authenticate :admin do
     resources :transport_companies
-  end 
+  end
 
   resources :transport_companies, only: [:index, :show, :new, :create]
 
