@@ -1,0 +1,2 @@
+class TransportCompany < ApplicationRecord
+end

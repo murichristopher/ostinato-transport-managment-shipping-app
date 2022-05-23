@@ -32,11 +32,12 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.include Warden::Test::Helpers
 
   config.before(type: :system) do
       driven_by(:rack_test)
     end
+
+  config.include Warden::Test::Helpers
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

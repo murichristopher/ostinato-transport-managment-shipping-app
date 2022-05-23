@@ -1,1 +1,9 @@
 <h1>Seja Bem vindo!<h1>
+
+<% if admin_signed_in? %>
+  <%= link_to "Transportadoras", transport_companies_path%>
+<% end %>
+
+<% if user_signed_in? %>
+  <p>oii</p>
+<% end %>

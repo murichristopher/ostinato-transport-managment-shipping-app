@@ -1,0 +1,11 @@
+<h1>Transportadoras<h1>
+
+
+<% @transport_companies.any? && @transport_companies.each do |transport_company| %>
+    <%= transport_company.trading_name %>
+        <%= transport_company.domain %>
+<% end %>
+
+<% if @transport_companies.empty? %>
+  <p>Nenhuma transportadora cadastrada</p>
+<% end %>

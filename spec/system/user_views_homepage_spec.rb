@@ -19,6 +19,7 @@ describe 'Usuário visualiza página inicial' do
     within("nav") do
       expect(page).to have_content("Home")
       expect(page).to have_content("joao@gmail.com")
+      expect(page).to have_content("User")
       expect(page).to have_content("Sair")
     end
   end
@@ -32,6 +33,7 @@ describe 'Usuário visualiza página inicial' do
     within("nav") do
       expect(page).to have_content("Home")
       expect(page).to have_content("joao@sistemadefrete.com.br")
+      expect(page).to have_content("Admin")
       expect(page).to have_content("Sair")
     end
   end
