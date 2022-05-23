@@ -1,0 +1,42 @@
+<%= render 'shared/form/errors' %>
+
+<div class="navigation-area d-flex justify-content-between align-items-center">
+  <h1 class="mb-3">Cadastrar nova Transportadora</h1>
+  <%= button_to "Voltar para a lista", transport_companies_path, {method: :get, class: "btn btn-outline-danger"} %>
+  </div>
+<hr>
+
+<%= form_with model: @transport_company, local: true, data: { turbo: false }  do |f| %>
+  <div class="row mb-2">
+    <%= f.label :trading_name, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.text_field :trading_name, placeholder:"Samsung", class:"form-control fs-5" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <%= f.label :company_name, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.text_field :company_name, placeholder:"3942384932/0001-89", class:"form-control fs-5" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <%= f.label :domain, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.text_field :domain, placeholder:"Av. Paulista, 200", class:"form-control fs-5" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <%= f.label :registration_number, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.text_field :registration_number, placeholder:"samsung.com.br", class:"form-control fs-5" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <%= f.label :full_address, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.text_field :full_address, placeholder:"samsung.com.br", class:"form-control fs-5" %>
+    </div>
+  </div>
+  <%= f.submit 'Salvar', class:"btn btn-primary fs-5" %>
+
+<% end %>

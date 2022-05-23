@@ -4,6 +4,7 @@
         warehouse: "Galpão"
         supplier: "Fornecedor"
         order: "Pedido"
+        transport_company: "Transportadora"
       attributes:
         warehouse:
           name: "Nome"
@@ -29,4 +30,9 @@
           user_id: "Usuário"
           user: "Usuário"
           estimated_delivery_date: "Data Prevista de Entrega"
-
+        transport_company:
+          trading_name: "Nome Fantasia"
+          company_name: "Razão Social"
+          domain: "Domínio"
+          registration_number: "CNPJ"
+          full_address: "Endereço completo"

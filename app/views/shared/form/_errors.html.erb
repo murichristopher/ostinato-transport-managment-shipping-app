@@ -1,0 +1,7 @@
+<% if @errors %>
+<div class="alert-danger p-3 mb-3">
+  <% @errors.each do |error| %>
+    <p><%= error %></p>
+  <% end %>
+  </div>
+<% end %>

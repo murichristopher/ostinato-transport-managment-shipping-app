@@ -1,4 +1,8 @@
-<h1>Transportadoras<h1>
+<div class="navigation-area d-flex justify-content-between align-items-center">
+  <h1 class="mb-2">Transportadoras</h1>
+  <%= button_to "Cadastrar Transportadora", new_transport_company_path, {method: :get, class: "btn btn-outline-success"} %>
+</div>
+<hr>
 
 
 <% @transport_companies.any? && @transport_companies.each do |transport_company| %>

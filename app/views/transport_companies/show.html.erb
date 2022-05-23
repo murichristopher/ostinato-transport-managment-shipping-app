@@ -1,0 +1,15 @@
+<div class="navigation-area d-flex justify-content-between align-items-center">
+<h1 class="mb-3"><%= @transport_company.company_name %></h1>
+
+<div class="navigation d-flex gap-2">
+    <%= button_to "Cadastrar Pedido", new_transport_company_path, {method: :get, class: "btn btn-outline-warning"} %>
+    <%= button_to "Desativar", new_transport_company_path, {method: :get, class: "btn btn-outline-danger"} %>
+  </div>
+</div>
+<hr>
+
+<p><%= @transport_company.trading_name %><p>
+<p><%= @transport_company.company_name %><p>
+<p><%= @transport_company.domain %><p>
+<p><%= @transport_company.registration_number %><p>
+<p><%= @transport_company.full_address %><p>

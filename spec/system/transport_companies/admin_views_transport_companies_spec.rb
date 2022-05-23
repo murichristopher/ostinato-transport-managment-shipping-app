@@ -11,7 +11,7 @@ describe 'Usuário visualiza transportadoras' do
   end
 
   it 'com sucesso' do
-    TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "2933284292", full_address: "Rua dos Andares, 294")
+    TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "34028316000103", full_address: "Rua dos Andares, 294")
 
     admin = Admin.create!(email:"joao@sistemadefrete.com.br", password:"123456")
     login_as(admin, scope: :admin)
