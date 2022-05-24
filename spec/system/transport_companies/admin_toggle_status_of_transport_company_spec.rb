@@ -14,7 +14,6 @@ describe "Administrador altera o estado de um transportadora" do
       click_on("SEDEX")
     end
 
-
     click_on("Desativar")
     transport_company.reload
 

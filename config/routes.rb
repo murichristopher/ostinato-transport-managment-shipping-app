@@ -14,6 +14,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :transport_companies, only: [:index, :show, :new, :create]
+  resources :transport_companies, only: [:index, :show, :new, :create, :edit, :update]
 
 end

@@ -28,16 +28,35 @@ class TransportCompaniesController < ApplicationController
   end
 
   def toggle_status
-    @t = TransportCompany.find(params[:id])
+    @transport_company = TransportCompany.find(params[:id])
 
-    if @t.active?
-      @t.inactive!
-    elsif @t.inactive?
-      @t.active!
+    if @transport_company.active?
+      @transport_company.inactive!
+    elsif @transport_company.inactive?
+      @transport_company.active!
     end
 
-    redirect_to @t, notice:"Alterado o estado da transportadora!"
+    redirect_to @transport_company
   end
+
+  def edit
+    @transport_company = TransportCompany.find(params[:id])
+  end
+
+  def update
+    @transport_company = TransportCompany.find(params[:id])
+
+    if  @transport_company.update(transport_company_params)
+      flash[:notice] = "Transportadora editada com sucesso!"
+      redirect_to(@transport_company)
+
+    else
+      @errors = @transport_company.errors.full_messages
+      flash.now[:notice] = "Algo deu errado"
+      render :edit
+    end
+  end
+
 
   private
 

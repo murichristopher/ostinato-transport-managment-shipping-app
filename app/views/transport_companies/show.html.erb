@@ -11,6 +11,8 @@
 <div class="navigation d-flex gap-2">
     <%= button_to "Ver tabelas de preço", new_transport_company_path, {method: :get, class: "btn btn-outline-warning"} %>
 
+     <%= button_to "Editar", edit_transport_company_path, {method: :get, class: "btn btn-outline-warning"} %>
+
     <% if @transport_company.active? %>
       <%= button_to "Desativar", toggle_status_transport_company_path, {method: :patch, class: "btn btn-outline-danger"} %>
     <% else %>
