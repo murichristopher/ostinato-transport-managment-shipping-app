@@ -1,14 +1,27 @@
 <div class="navigation-area d-flex justify-content-between align-items-center">
-<h1 class="mb-3"><%= @transport_company.company_name %></h1>
+
+<div class="d-flex justify-content-center align-items-center gap-2 ">
+<h2 class="mb-3"><%= @transport_company.company_name %></h2>
+  <% if @transport_company.active? %>
+    <p class="alert alert-success">ATIVO</p>
+  <% else %>
+      <p class="alert alert-danger">INATIVO</p>
+  <% end %>
+</div>
+
 
 <div class="navigation d-flex gap-2">
     <%= button_to "Ver tabelas de preço", new_transport_company_path, {method: :get, class: "btn btn-outline-warning"} %>
-    <%= button_to "Desativar", new_transport_company_path, {method: :get, class: "btn btn-outline-danger"} %>
+
+    <% if @transport_company.active? %>
+      <%= button_to "Desativar", toggle_status_transport_company_path, {method: :patch, class: "btn btn-outline-danger"} %>
+    <% else %>
+      <%= button_to "Ativar", toggle_status_transport_company_path, {method: :patch, class: "btn btn-outline-success"} %>
+    <% end %>
+     <%= button_to "Voltar para a lista", transport_companies_path, {method: :get, class: "btn btn-outline-danger"} %>
   </div>
 </div>
 <hr>
-
-
 
 
 <div class="row scroll">

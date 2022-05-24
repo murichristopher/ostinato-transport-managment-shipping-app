@@ -45,3 +45,12 @@ footer{
 .centered{
   text-align: center;
 }
+
+.navigation-area{
+  flex-wrap: wrap;
+}
+
+.card-title a{
+  text-decoration: none;
+  color: inherit;
+}

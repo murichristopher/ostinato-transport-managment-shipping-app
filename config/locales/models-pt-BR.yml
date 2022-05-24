@@ -36,3 +36,4 @@
           domain: "Domínio"
           registration_number: "CNPJ"
           full_address: "Endereço completo"
+          active: "Ativa"

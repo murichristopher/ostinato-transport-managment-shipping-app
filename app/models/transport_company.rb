@@ -1,6 +1,7 @@
 class TransportCompany < ApplicationRecord
   has_many :users
   #TransportCompany.last.users => search all users of a target transportcompany
+  enum status: { inactive: 0, active: 5 }
 
   validates :trading_name, :company_name, :domain, :registration_number, :full_address, presence: true
   validates :trading_name, :company_name, :domain, :registration_number, uniqueness:true

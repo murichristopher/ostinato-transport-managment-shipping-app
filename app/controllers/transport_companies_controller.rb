@@ -2,7 +2,9 @@ class TransportCompaniesController < ApplicationController
   before_action :authenticate_admin!, :except => [:index]
 
   def index
-    @transport_companies = TransportCompany.all
+    @active_transport_companies = TransportCompany.active
+    @inactive_transport_companies = TransportCompany.inactive
+
   end
 
   def new
@@ -25,6 +27,17 @@ class TransportCompaniesController < ApplicationController
     @transport_company = TransportCompany.find(params[:id])
   end
 
+  def toggle_status
+    @t = TransportCompany.find(params[:id])
+
+    if @t.active?
+      @t.inactive!
+    elsif @t.inactive?
+      @t.active!
+    end
+
+    redirect_to @t, notice:"Alterado o estado da transportadora!"
+  end
 
   private
 
