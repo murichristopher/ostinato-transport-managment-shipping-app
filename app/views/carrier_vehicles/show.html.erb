@@ -6,9 +6,9 @@
 
   </div>
   <div class="navigation d-flex gap-2">
-       <%= button_to "Editar", edit_carrier_vehicle_path, {method: :get, class: "btn btn-outline-warning"} %>
+      <%= button_to "Editar", edit_carrier_vehicle_path, {method: :get, class: "btn btn-outline-warning"} %>
 
-      <%= button_to "Deletar", root_path, {method: :patch, class: "btn btn-outline-danger"} %>
+      <%= button_to "Deletar", carrier_vehicle_url, {method: :delete, class: "btn btn-outline-danger"} %>
 
      <%= button_to "Voltar para a lista", carrier_vehicles_path , {method: :get, class: "btn btn-outline-danger"} %>
   </div>

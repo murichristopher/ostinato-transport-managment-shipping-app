@@ -42,6 +42,14 @@ class CarrierVehiclesController < ApplicationController
       end
   end
 
+  def destroy
+      if @carrier_vehicle.destroy
+        flash[:notice] = 'Veículo deletado com suceso'
+        redirect_to carrier_vehicles_path
+      else
+        flash[:alert] = 'Algo deu errado'
+      end
+  end
 
   private
 

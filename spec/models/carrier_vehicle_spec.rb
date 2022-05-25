@@ -115,11 +115,11 @@ RSpec.describe CarrierVehicle, type: :model do
 
       transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "34028316000103", full_address: "Rua dos Andares, 294")
 
-      carrier_vehicle = CarrierVehicle.create!(license_plate: "ABC2334", brand: "SEDEX DISTRIBUICOES LTDA", model: "sedex.com.br", year: "2005", maximum_load_capacity: 200, transport_company:transport_company)
+      carrier_vehicle = CarrierVehicle.create!(license_plate: "ABC2334", brand: "Fiat", model: "Toro", year: "2005", maximum_load_capacity: 200, transport_company:transport_company)
 
       res = carrier_vehicle.full_description
 
-      expect(res).to eq("SDU | Galpão RJ")
+      expect(res).to eq("Toro | Fiat")
     end
   end
 end

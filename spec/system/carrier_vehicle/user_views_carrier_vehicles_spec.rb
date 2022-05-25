@@ -28,6 +28,20 @@ describe "Usuário visualiza veículos" do
     expect(page).not_to have_content("Marca: Fiat")
     expect(page).not_to have_content("Ano: 2005")
     expect(page).not_to have_content("Capacidade Máxima de Carga: 1720")
+    expect(page).not_to have_content("Nenhum veículo cadastrado")
+  end
+
+  it 'sem nenhum cadastrado' do
+    first_transport_company = TransportCompany.create!(trading_name: "JEDEX", company_name: "JEDEX DISTRIBUICOES LTDA", domain: "jedex.com.br", registration_number: "34021316000103", full_address: "Rua dos Andares, 294")
+
+    user = User.create!(email:"joao@jedex.com.br", password:"123456")
+    login_as(user, scope: :user)
+
+    visit(root_path)
+
+    click_on("Ver veículos")
+
+    expect(page).to have_content("Nenhum veículo cadastrado")
   end
 end
 
