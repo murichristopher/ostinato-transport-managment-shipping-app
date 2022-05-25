@@ -19,10 +19,10 @@ class User < ApplicationRecord
     @transport_company = TransportCompany.find_by(domain: @user_domain)
 
     if @transport_company.nil?
-      self.user_type = 0
+      self.user_type = "guest"
     else
       self.transport_company = @transport_company
-      self.user_type = 1
+      self.user_type = "linked"
     end
   end
 

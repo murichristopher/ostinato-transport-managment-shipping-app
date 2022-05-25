@@ -61,7 +61,7 @@ RSpec.describe CarrierVehicle, type: :model do
       it 'true when all required attributes are fullfilled' do
         transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "34028316000103", full_address: "Rua dos Andares, 294")
 
-        carrier_vehicle = CarrierVehicle.create!(license_plate: "ABC2334", brand: "SEDEX DISTRIBUICOES LTDA", model: "sedex.com.br", year: "2005", maximum_load_capacity: 200, transport_company:transport_company)
+        carrier_vehicle = CarrierVehicle.create!(license_plate: "ABC2334", brand: "Sedan", model: "Stylus", year: "2005", maximum_load_capacity: 200, transport_company:transport_company)
 
         carrier_vehicle.valid?
 
@@ -108,5 +108,18 @@ RSpec.describe CarrierVehicle, type: :model do
       end
     end
 
+  end
+
+  describe '#full_description' do
+    it 'should return model and vehicle brand' do
+
+      transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "34028316000103", full_address: "Rua dos Andares, 294")
+
+      carrier_vehicle = CarrierVehicle.create!(license_plate: "ABC2334", brand: "SEDEX DISTRIBUICOES LTDA", model: "sedex.com.br", year: "2005", maximum_load_capacity: 200, transport_company:transport_company)
+
+      res = carrier_vehicle.full_description
+
+      expect(res).to eq("SDU | Galpão RJ")
+    end
   end
 end

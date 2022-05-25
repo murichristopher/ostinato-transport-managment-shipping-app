@@ -10,6 +10,17 @@ class CarrierVehicle < ApplicationRecord
   validates :license_plate, format: { with: /\A[a-zA-Z]{3}[0-9][A-Za-z0-9][0-9]{2}\z/ }
   validates :year, length: {is: 4}
 
+  def full_description
+    "#{self.model} | #{self.brand}"
+  end
+
+  before_create :upcase_license_plate
+
+  private
+
+  def upcase_license_plate
+    self.license_plate = self.license_plate.upcase
+  end
 
 
 end

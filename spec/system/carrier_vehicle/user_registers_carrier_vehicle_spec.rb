@@ -13,7 +13,7 @@ describe "Usuário registra um veículo" do
 
     click_on("Cadastrar Veículo")
 
-    fill_in("Placa do Veículo", with:"BRA2E19")
+    fill_in("Placa do Veículo", with:"bra2e19")
     fill_in("Marca", with:"Renault")
     fill_in("Modelo", with:"Master Minibus")
     fill_in("Ano", with:"2019")

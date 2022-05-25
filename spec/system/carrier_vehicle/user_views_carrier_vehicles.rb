@@ -28,7 +28,6 @@ describe "Usuário visualiza veículos" do
     expect(page).not_to have_content("Marca: Fiat")
     expect(page).not_to have_content("Ano: 2005")
     expect(page).not_to have_content("Capacidade Máxima de Carga: 1720")
-
   end
 end
 
