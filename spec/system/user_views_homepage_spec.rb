@@ -12,7 +12,9 @@ describe 'Usuário visualiza página inicial' do
     within(".container") do
       expect(page).to have_content("Olá")
       expect(page).to have_content("Consultar Ordem de Serviço")
-      expect(page).not_to have_content("Ver ")
+      expect(page).not_to have_content("Ver transportadoras")
+      expect(page).not_to have_content("Ver veículos")
+
     end
   end
 
@@ -28,6 +30,7 @@ describe 'Usuário visualiza página inicial' do
       expect(page).to have_content("Home")
       expect(page).to have_content("fernandinho@sedex.com.br")
       expect(page).to have_content("Usuário")
+      expect(page).not_to have_content("Admin")
       expect(page).to have_content("Sair")
     end
 
@@ -36,7 +39,8 @@ describe 'Usuário visualiza página inicial' do
       expect(page).to have_content("Consultar Ordem de Serviço")
       expect(page).to have_content("Cadastrar veículos")
       expect(page).to have_content("Atualizar preços")
-      expect(page).not_to have_content("Ver ")
+      expect(page).to have_content("Ver veículos")
+      expect(page).to_not have_content("Ver transportadoras")
     end
   end
 
@@ -60,7 +64,7 @@ describe 'Usuário visualiza página inicial' do
       expect(page).to have_content("Consultar Ordem de Serviço")
       expect(page).not_to have_content("Cadastrar veículos")
       expect(page).not_to have_content("Atualizar preços")
-      expect(page).not_to have_content("Ver ")
+      expect(page).not_to have_content("Ver veículos")
     end
   end
 
@@ -75,6 +79,7 @@ describe 'Usuário visualiza página inicial' do
       expect(page).to have_content("Home")
       expect(page).to have_content("joao@sistemadefrete.com.br")
       expect(page).to have_content("Admin")
+      expect(page).not_to have_content("Usuário")
       expect(page).to have_content("Sair")
     end
 

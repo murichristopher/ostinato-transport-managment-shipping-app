@@ -5,6 +5,7 @@
         supplier: "Fornecedor"
         order: "Pedido"
         transport_company: "Transportadora"
+        carrier_vehicle: "Veículo"
       attributes:
         warehouse:
           name: "Nome"
@@ -37,3 +38,10 @@
           registration_number: "CNPJ"
           full_address: "Endereço completo"
           active: "Ativa"
+        carrier_vehicle:
+          license_plate: "Placa do Veículo"
+          brand: "Marca"
+          model: "Modelo"
+          year: "Ano"
+          maximum_load_capacity: "Capacidade Máxima de Carga"
+          transport_company_id: "Transportadora"

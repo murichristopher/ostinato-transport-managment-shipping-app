@@ -1,0 +1,18 @@
+<% @carrier_vehicles.each do |carrier_vehicle| %>
+ <div class="col-lg-4">
+  <div class="card mb-3" >
+    <div class="card-body">
+      <h3 class="card-title fs-2"><%= link_to carrier_vehicle.model, carrier_vehicle %></h3>
+      <ul class="list-group list-group-flush">
+      <li class="list-group-item">Marca: <%= carrier_vehicle.brand%></li>
+       <li class="list-group-item">Ano: <%= carrier_vehicle.year%>
+      <li class="list-group-item">Placa: <%= carrier_vehicle.license_plate%></li>
+      <li class="list-group-item">Capacidade Máxima de Carga: <%= carrier_vehicle.maximum_load_capacity%>
+  </li>
+    </ul>
+      <%= link_to "Ver detalhes", carrier_vehicle, class:"btn btn-primary mt-2"%>
+      <p class="card-text mt-2 fs-6"><small class="text-muted">Atualizado em <%=  carrier_vehicle[:updated_at].strftime("%d/%m/%Y")  %></small></p>
+    </div>
+  </div>
+  </div>
+<% end %>

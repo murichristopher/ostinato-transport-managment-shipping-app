@@ -1,0 +1,13 @@
+<div class="navigation-area d-flex justify-content-between align-items-center">
+  <h1 class="mb-2">Veículos de <%= @transport_company %></h1>
+  <%= button_to "Cadastrar Veículo", new_carrier_vehicle_path, {method: :get, class: "btn btn-outline-success"} %>
+</div>
+<hr>
+
+<div class="row scroll">
+  <%= render 'cards' %>
+</div>
+
+<% if @carrier_vehicles.empty? %>
+  <p>Nenhuma veículo cadastrada</p>
+<% end %>

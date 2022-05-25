@@ -1,5 +1,5 @@
 class TransportCompaniesController < ApplicationController
-  before_action :authenticate_admin!, :except => [:index]
+  before_action :authenticate_admin!
 
   def index
     @active_transport_companies = TransportCompany.active

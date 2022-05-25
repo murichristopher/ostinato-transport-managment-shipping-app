@@ -1,0 +1,19 @@
+<div class="row scroll">
+<% @carrier_vehicle.form_attributes.each do |attr_name, attr_value| %>
+<div class="col-lg-3">
+
+<div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+  <div class="card-header"><%= CarrierVehicle.human_attribute_name(attr_name) %></div>
+  <div div class="card-body">
+    <h5 class="card-title"><%= attr_value %></h5>
+  </div>
+</div>
+</div>
+<% end %>
+<div class="col-lg-3">
+<div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+  <div class="card-header">Registrado em</div>
+  <div div class="card-body">
+    <h5 class="card-title"><%= I18n.localize(Date.parse(@carrier_vehicle.created_at.strftime('%d/%m/%Y')))%></h5>
+  </div>
+</div>

@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     resources :transport_companies
   end
 
+  authenticate :user do
+    resources :carrier_vehicles
+  end
+
   resources :transport_companies do
     member do
       patch :toggle_status
@@ -15,5 +19,6 @@ Rails.application.routes.draw do
   end
 
   resources :transport_companies, only: [:index, :show, :new, :create, :edit, :update]
+  resources :carrier_vehicles, only: [:index, :show, :new, :create, :edit, :update]
 
 end
