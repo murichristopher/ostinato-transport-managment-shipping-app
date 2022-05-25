@@ -1,0 +1,43 @@
+<div class="navigation-area d-flex justify-content-between align-items-center">
+  <h1 class="mb-2">Editando veículo <%= @carrier_vehicle.model%> </h1>
+  <%= button_to "Voltar para a lista", carrier_vehicles_path, {method: :get, class: "btn btn-outline-danger"} %>
+  </div>
+<hr>
+
+<%= render 'shared/form/errors' %>
+
+
+<%= form_with model: @carrier_vehicle, local: true, data: { turbo: false }  do |f| %>
+  <div class="row mb-2">
+    <%= f.label :license_plate, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.text_field :license_plate, placeholder:"AB01283", class:"form-control fs-5" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <%= f.label :brand, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.text_field :brand, placeholder:"Renault", class:"form-control fs-5" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <%= f.label :model, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.text_field :model, placeholder:"Juggernaut", class:"form-control fs-5" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <%= f.label :year, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.text_field :year, placeholder:"2009", class:"form-control fs-5" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <%= f.label :maximum_load_capacity, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.number_field :maximum_load_capacity, placeholder:"em kg", class:"form-control fs-5" %>
+    </div>
+  </div>
+  <%= f.submit 'Salvar', class:"btn btn-primary fs-5" %>
+
+<% end %>

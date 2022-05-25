@@ -27,6 +27,7 @@ describe "Usuário registra um veículo" do
     expect(page).to have_content("Master Minibus")
     expect(page).to have_content("2019")
     expect(page).to have_content("1759")
+    expect(page).to have_content("SEDEX")
   end
 
   it 'com dados inválidos ou incompletos' do

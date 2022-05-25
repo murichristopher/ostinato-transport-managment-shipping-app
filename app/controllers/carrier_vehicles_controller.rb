@@ -1,5 +1,6 @@
 class CarrierVehiclesController < ApplicationController
   before_action :authenticate_linked_user
+  before_action :set_carrier_vehicle_and_check_company, only: [:show, :edit, :update, :destroy]
 
   def index
     @carrier_vehicles = current_user.transport_company.carrier_vehicles
@@ -7,11 +8,7 @@ class CarrierVehiclesController < ApplicationController
   end
 
   def show
-    @carrier_vehicle = CarrierVehicle.find(params[:id])
-
-    if @carrier_vehicle.transport_company != current_user.transport_company
-      redirect_to root_path, notice:"Você não deveria estar aqui"
-    end
+    @transport_company = current_user.transport_company.trading_name
   end
 
   def new
@@ -19,7 +16,6 @@ class CarrierVehiclesController < ApplicationController
   end
 
   def create
-
     @carrier_vehicle = CarrierVehicle.new(carrier_vehicle_params)
 
     @carrier_vehicle.transport_company = current_user.transport_company
@@ -32,6 +28,21 @@ class CarrierVehiclesController < ApplicationController
     end
   end
 
+  def edit
+    check_user_company()
+  end
+
+  def update
+      if @carrier_vehicle.update(carrier_vehicle_params)
+        flash[:notice] = "Veículo editado com sucesso!"
+        redirect_to @carrier_vehicle
+      else
+        @errors = @carrier_vehicle.errors.full_messages
+        render :edit
+      end
+  end
+
+
   private
 
   def authenticate_linked_user
@@ -42,4 +53,14 @@ class CarrierVehiclesController < ApplicationController
     params.require(:carrier_vehicle).permit(:license_plate, :brand, :model, :year, :maximum_load_capacity)
   end
 
+  def set_carrier_vehicle_and_check_company
+    @carrier_vehicle = CarrierVehicle.find(params[:id])
+    return check_user_company()
+  end
+
+  def check_user_company
+    if @carrier_vehicle.transport_company != current_user.transport_company
+      redirect_to root_path, notice:"Você não deveria estar aqui"
+    end
+  end
 end
