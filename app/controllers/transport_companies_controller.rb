@@ -1,10 +1,10 @@
 class TransportCompaniesController < ApplicationController
   before_action :authenticate_admin!
+  before_action :set_transport_company, only: [:show, :edit, :update, :toggle_status]
 
   def index
     @active_transport_companies = TransportCompany.active
     @inactive_transport_companies = TransportCompany.inactive
-
   end
 
   def new
@@ -24,12 +24,9 @@ class TransportCompaniesController < ApplicationController
   end
 
   def show
-    @transport_company = TransportCompany.find(params[:id])
   end
 
   def toggle_status
-    @transport_company = TransportCompany.find(params[:id])
-
     if @transport_company.active?
       @transport_company.inactive!
     elsif @transport_company.inactive?
@@ -40,12 +37,9 @@ class TransportCompaniesController < ApplicationController
   end
 
   def edit
-    @transport_company = TransportCompany.find(params[:id])
   end
 
   def update
-    @transport_company = TransportCompany.find(params[:id])
-
     if  @transport_company.update(transport_company_params)
       flash[:notice] = "Transportadora editada com sucesso!"
       redirect_to(@transport_company)
@@ -64,5 +58,7 @@ class TransportCompaniesController < ApplicationController
     params.require(:transport_company).permit(:trading_name, :company_name, :domain, :registration_number, :full_address)
   end
 
-
+  def set_transport_company
+    @transport_company = TransportCompany.friendly.find(params[:id])
+  end
 end

@@ -1,4 +1,7 @@
 class TransportCompany < ApplicationRecord
+  extend FriendlyId
+  friendly_id :company_name, use: :slugged
+
   has_many :users
   has_many :carrier_vehicles
   #TransportCompany.last.users => search all users of a target transportcompany
