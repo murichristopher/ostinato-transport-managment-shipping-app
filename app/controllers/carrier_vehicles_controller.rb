@@ -54,7 +54,7 @@ class CarrierVehiclesController < ApplicationController
   end
 
   def set_carrier_vehicle_and_check_company
-    @carrier_vehicle = CarrierVehicle.find(params[:id])
+    @carrier_vehicle = CarrierVehicle.friendly.find(params[:id])
     return check_user_company()
   end
 

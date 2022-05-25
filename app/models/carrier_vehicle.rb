@@ -1,4 +1,8 @@
 class CarrierVehicle < ApplicationRecord
+
+  extend FriendlyId
+  friendly_id :license_plate, use: :slugged
+
   belongs_to :transport_company
 
   validates :license_plate, :brand, :model, :year, :maximum_load_capacity, presence: true
