@@ -11,9 +11,9 @@ class PricesController < ApplicationController
   end
 
   def create
-  @price = Price.new(price_params)
+    @price = Price.new(price_params)
 
-  @price.transport_company = current_user.transport_company
+    @price.transport_company = current_user.transport_company
 
     if @price.save
       redirect_to(prices_path, notice:"Preço cadastrado com sucesso!")
@@ -24,11 +24,9 @@ class PricesController < ApplicationController
   end
 
   def edit
-    @price = Price.friendly.find(params[:id])
   end
 
   def update
-      @price = Price.friendly.find(params[:id])
       if @price.update(price_params)
         flash[:notice] = "Preço editado com sucesso!"
         redirect_to prices_path
@@ -39,8 +37,6 @@ class PricesController < ApplicationController
   end
 
    def destroy
-      @price = Price.friendly.find(params[:id])
-
       if @price.destroy
         flash[:notice] = 'Preço deletado com sucesso!'
         redirect_to prices_path
@@ -50,10 +46,6 @@ class PricesController < ApplicationController
   end
 
   private
-
-  # def authenticate!
-
-  # end
 
   def price_params
     params.require(:price).permit(:cubic_meters_min, :cubic_meters_max, :weight_min, :weight_max, :value_per_km)
