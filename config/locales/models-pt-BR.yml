@@ -47,4 +47,8 @@
           maximum_load_capacity: "Capacidade Máxima de Carga"
           transport_company_id: "Transportadora"
         price:
-          value_per_km: "ois"
+          cubic_meters_min: "Metros Cúbicos Mínimo"
+          cubic_meters_max: "Metros Cúbicos Máximo"
+          weight_min: "Peso Mínimo"
+          weight_max: "Peso Máximo"
+          value_per_km: "Valor por Km"
