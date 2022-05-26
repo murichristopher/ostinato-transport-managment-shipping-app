@@ -72,6 +72,21 @@ describe "#valid?" do
       end
     end
 
+    context "custom validations" do
+        it "false when cubic_meters_min is greater than cubic_meters_max" do
+          price = Price.new(cubic_meters_min: 1, cubic_meters_max: 0.90)
+          price.valid?
 
+          res = price.errors[:cubic_meters_max]
+          expect(res).to include("deve ser maior que o Metros Cúbicos Mínimo")
+        end
+        it "false when weight_min is greater than weight_max" do
+          price = Price.new(weight_min: 54, weight_max: 11)
+          price.valid?
+
+          res = price.errors[:weight_max]
+          expect(res).to include("deve ser maior que o Peso Mínimo")
+        end
+    end
 end
 end
