@@ -6,6 +6,7 @@
         order: "Pedido"
         transport_company: "Transportadora"
         carrier_vehicle: "Veículo"
+        price: "Preço"
       attributes:
         warehouse:
           name: "Nome"
@@ -45,3 +46,5 @@
           year: "Ano"
           maximum_load_capacity: "Capacidade Máxima de Carga"
           transport_company_id: "Transportadora"
+        price:
+          value_per_km: "ois"

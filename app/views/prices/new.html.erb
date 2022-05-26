@@ -1,0 +1,36 @@
+<h1>novo</h1>
+
+<%= form_with model: @prices, local: true, data: { turbo: false }  do |f| %>
+  <div class="row mb-2">
+    <%= f.label :cubic_meters_min, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.number_field :cubic_meters_min, step: 0.05, class:"form-control" %>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <%= f.label :cubic_meters_max, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.number_field :cubic_meters_max, step: 0.05, class:"form-control" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <%= f.label :weight_min, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.number_field :weight_min, placeholder:"SEDEX CORREIOS E TELÉGRAFOS LTDA", class:"form-control fs-5" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <%= f.label :weight_max, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.number_field :weight_max, placeholder:"sedex.com.br", class:"form-control fs-5" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <%= f.label :value_per_km, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.number_field :value_per_km, placeholder:"02.558.157/0001-62.", class:"form-control fs-5" %>
+    </div>
+  </div>
+  <%= f.submit 'Salvar', class:"btn btn-primary fs-5" %>
+
+<% end %>

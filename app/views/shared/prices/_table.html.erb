@@ -1,0 +1,27 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Metros cúbicos</th>
+      <th scope="col">Peso</th>
+      <th scope="col">Valor / KM</th>
+      <% if user_signed_in? %>
+        <th scope="col">Ações</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+<% @prices.each do |price| %>
+<tr>
+      <th scope="row"><%= price.cubic_meters_min %>m³ á <%= price.cubic_meters_max%>m³</th>
+      <td><%= price.weight_min %>kg á <%= price.weight_max%>kg</td>
+      <td>R$<%= price.value_per_km %></td>
+      <% if user_signed_in? %>
+         <td class="d-flex gap-2"><%= button_to "Editar", root_path, {method: :get, class: "btn btn-warning"} %> <%= button_to "Deletar", root_path, {method: :delete, class: "btn btn-danger"} %></td>
+      <% end %>
+</tr>
+
+<% end %>
+  </tbody>
+</table >
+
+<p class="card-text mt-2 fs-6"><small class="text-muted">Atualizado em <%=  @prices.last[:updated_at].strftime("%d/%m/%Y")  %></small></p>

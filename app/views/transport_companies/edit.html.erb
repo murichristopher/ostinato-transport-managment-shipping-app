@@ -6,37 +6,4 @@
 
 <%= render 'shared/form/errors' %>
 
-<%= form_with model: @transport_company, local: true, data: { turbo: false }  do |f| %>
-  <div class="row mb-2">
-    <%= f.label :trading_name, class:"col-sm-6 col-form-label"%>
-    <div class="col-sm-10">
-      <%= f.text_field :trading_name, placeholder:"SEDEX", class:"form-control fs-5" %>
-    </div>
-  </div>
-  <div class="row mb-3">
-    <%= f.label :company_name, class:"col-sm-6 col-form-label"%>
-    <div class="col-sm-10">
-      <%= f.text_field :company_name, placeholder:"SEDEX CORREIOS E TELÉGRAFOS LTDA", class:"form-control fs-5" %>
-    </div>
-  </div>
-  <div class="row mb-3">
-    <%= f.label :domain, class:"col-sm-6 col-form-label"%>
-    <div class="col-sm-10">
-      <%= f.text_field :domain, placeholder:"sedex.com.br", class:"form-control fs-5" %>
-    </div>
-  </div>
-  <div class="row mb-3">
-    <%= f.label :registration_number, class:"col-sm-6 col-form-label"%>
-    <div class="col-sm-10">
-      <%= f.text_field :registration_number, placeholder:"02.558.157/0001-62.", class:"form-control fs-5" %>
-    </div>
-  </div>
-  <div class="row mb-3">
-    <%= f.label :full_address, class:"col-sm-6 col-form-label"%>
-    <div class="col-sm-10">
-      <%= f.text_field :full_address, placeholder:"Av. Engenheiro Luís Carlos Berrini, 1376 - Cidade Monções, São Paulo - SP, 04571-936", class:"form-control fs-5" %>
-    </div>
-  </div>
-  <%= f.submit 'Salvar', class:"btn btn-primary fs-5" %>
-
-<% end %>
+<%= render 'form' %>

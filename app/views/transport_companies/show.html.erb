@@ -1,3 +1,4 @@
+
 <div class="navigation-area d-flex justify-content-between align-items-center">
 
 <div class="d-flex justify-content-center align-items-center gap-2 ">
@@ -8,9 +9,8 @@
       <p class="alert alert-danger">INATIVO</p>
   <% end %>
 </div>
-<div class="navigation d-flex gap-2">
-    <%= button_to "Ver tabelas de preço", new_transport_company_path, {method: :get, class: "btn btn-outline-warning"} %>
 
+<div class="navigation d-flex gap-2">
      <%= button_to "Editar", edit_transport_company_path, {method: :get, class: "btn btn-outline-warning"} %>
 
     <% if @transport_company.active? %>
@@ -24,8 +24,16 @@
 <hr>
 
 
+<div class="row scroll">
+
 <%= render 'attributes'%>
+</div>
 
+<h1 class="mt-5">Tabela de preços</h1>
+<hr>
 
-
-
+<% if @prices.any?%>
+  <%= render 'shared/prices/table'%>
+<% else %>
+  <p>Nenhuma tabela de preços cadastrada</p>
+<% end %>
