@@ -10,13 +10,13 @@
     </tr>
   </thead>
   <tbody>
-<% @prices.each do |price| %>
-<tr>
+<% @prices.each_with_index do |price, index| %>
+<tr class="t-line<%= index %>">
       <th scope="row"><%= price.cubic_meters_min %>m³ á <%= price.cubic_meters_max%>m³</th>
       <td><%= price.weight_min %>kg á <%= price.weight_max%>kg</td>
       <td>R$<%= price.value_per_km %></td>
       <% if user_signed_in? %>
-         <td class="d-flex gap-2"><%= button_to "Editar", root_path, {method: :get, class: "btn btn-warning"} %> <%= button_to "Deletar", root_path, {method: :delete, class: "btn btn-danger"} %></td>
+         <td class="d-flex gap-2"><%= button_to "Editar", edit_price_path(price), {method: :get, class: "btn btn-warning"} %> <%= button_to "Deletar", root_path, {method: :delete, class: "btn btn-danger"} %></td>
       <% end %>
 </tr>
 

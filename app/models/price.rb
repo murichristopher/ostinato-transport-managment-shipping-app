@@ -1,4 +1,7 @@
 class Price < ApplicationRecord
+  extend FriendlyId
+  friendly_id :value_per_km, use: :slugged
+
   belongs_to :transport_company
 
   validates :cubic_meters_min, :cubic_meters_max, :weight_min, :weight_max, :value_per_km, presence: true

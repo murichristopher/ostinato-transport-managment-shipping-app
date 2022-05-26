@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_26_011203) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_26_181547) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -57,6 +57,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_011203) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "weight_max"
+    t.string "slug"
+    t.index ["slug"], name: "index_prices_on_slug", unique: true
     t.index ["transport_company_id"], name: "index_prices_on_transport_company_id"
   end
 

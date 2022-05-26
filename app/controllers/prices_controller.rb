@@ -20,6 +20,22 @@ class PricesController < ApplicationController
     end
   end
 
+  def edit
+    @price = Price.friendly.find(params[:slug])
+  end
+
+  def update
+      @price = Price.friendly.find(params[:slug])
+      if @price.update(price_params)
+        flash[:notice] = "Preço editado com sucesso!"
+        redirect_to prices_path
+      else
+        @errors = @price.errors.full_messages
+        render :edit
+      end
+  end
+
+
   private
 
   def price_params
