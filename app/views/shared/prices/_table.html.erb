@@ -16,7 +16,7 @@
       <td><%= price.weight_min %>kg á <%= price.weight_max%>kg</td>
       <td>R$<%= price.value_per_km %></td>
       <% if user_signed_in? %>
-         <td class="d-flex gap-2"><%= button_to "Editar", edit_price_path(price), {method: :get, class: "btn btn-warning"} %> <%= button_to "Deletar", root_path, {method: :delete, class: "btn btn-danger"} %></td>
+         <td class="d-flex gap-2"><%= button_to "Editar", edit_price_path(price), {method: :get, class: "btn btn-warning"} %> <%= button_to "Deletar", price_path(price), {method: :delete, class: "btn btn-danger"} %></td>
       <% end %>
 </tr>
 

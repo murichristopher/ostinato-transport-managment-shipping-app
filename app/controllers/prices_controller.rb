@@ -1,4 +1,7 @@
 class PricesController < ApplicationController
+  before_action :authenticate_linked_user!
+  before_action :set_price_and_check_company, only: [:show, :edit, :update, :destroy]
+
   def index
     @prices = current_user.transport_company.prices
   end
@@ -21,11 +24,11 @@ class PricesController < ApplicationController
   end
 
   def edit
-    @price = Price.friendly.find(params[:slug])
+    @price = Price.friendly.find(params[:id])
   end
 
   def update
-      @price = Price.friendly.find(params[:slug])
+      @price = Price.friendly.find(params[:id])
       if @price.update(price_params)
         flash[:notice] = "Preço editado com sucesso!"
         redirect_to prices_path
@@ -35,10 +38,40 @@ class PricesController < ApplicationController
       end
   end
 
+   def destroy
+      @price = Price.friendly.find(params[:id])
+
+      if @price.destroy
+        flash[:notice] = 'Preço deletado com sucesso!'
+        redirect_to prices_path
+      else
+        flash[:alert] = 'Algo deu errado'
+      end
+  end
 
   private
+
+  # def authenticate!
+
+  # end
 
   def price_params
     params.require(:price).permit(:cubic_meters_min, :cubic_meters_max, :weight_min, :weight_max, :value_per_km)
   end
+
+  def authenticate_linked_user!
+    return redirect_to root_path if current_user.guest?
+  end
+
+  def set_price_and_check_company
+    @price = Price.friendly.find(params[:id])
+    return check_user_company()
+  end
+
+  def check_user_company
+    if @price.transport_company != current_user.transport_company
+      redirect_to root_path, notice:"Você não deveria estar aqui"
+    end
+  end
+
 end

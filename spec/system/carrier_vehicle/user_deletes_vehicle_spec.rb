@@ -20,6 +20,7 @@ describe 'Usuário deleta um veículo' do
 
     click_on("Deletar")
 
+    expect(page).to have_content("Veículo deletado com sucesso!")
     expect(page).to have_content("Minibus")
     expect(page).to have_content("Marca: Fiat")
     expect(page).to have_content("Ano: 2005")
