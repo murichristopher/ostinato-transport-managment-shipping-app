@@ -30,7 +30,7 @@ class DeliveryTimesController < ApplicationController
         flash[:notice] = "Prazo de entraga editado com sucesso!"
         redirect_to delivery_times_path
       else
-        @errors = @price.errors.full_messages
+        @errors = @delivery_time.errors.full_messages
         render :edit
       end
   end
