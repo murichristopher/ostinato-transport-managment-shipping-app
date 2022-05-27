@@ -1,6 +1,7 @@
 class Price < ApplicationRecord
   extend FriendlyId
-  friendly_id :value_per_km, use: :slugged
+  friendly_id :slugging, use: [:slugged, :history, :finders]
+
 
   belongs_to :transport_company
 

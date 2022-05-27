@@ -7,6 +7,7 @@
         transport_company: "Transportadora"
         carrier_vehicle: "Veículo"
         price: "Preço"
+        delivery_time: "Prazo de Envio"
       attributes:
         warehouse:
           name: "Nome"
@@ -52,3 +53,7 @@
           weight_min: "Peso Mínimo"
           weight_max: "Peso Máximo"
           value_per_km: "Valor por Km"
+        delivery_time:
+          km_min: "Quilômetros Mínimo"
+          km_max: "Quilômetros Máximo"
+          time: "Prazo"

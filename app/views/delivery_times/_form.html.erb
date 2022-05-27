@@ -1,0 +1,21 @@
+<%= form_with model: @delivery_time, local: true, data: { turbo: false } do | f | %>
+  <div class="row mb-2">
+    <%= f.label :km_min, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.number_field :km_min, step: 0.1, class:"form-control", placeholder:"0.1km" %>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <%= f.label :km_max, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.number_field :km_max, step: 0.1, class:"form-control", placeholder:"5km" %>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <%= f.label :time, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-10">
+      <%= f.number_field :time, step: 0.1, class:"form-control", placeholder:"3 dias" %>
+    </div>
+  </div>
+  <%= f.submit 'Salvar', class:"btn btn-primary fs-5" %>
+<% end %>

@@ -14,7 +14,7 @@
       <th scope="row"><%= delivery_time.km_min %>km á <%= delivery_time.km_max %>km</th>
       <td><%= delivery_time.time %> dias úteis</td>
       <% if user_signed_in? %>
-         <td class="d-flex gap-2"><%= button_to "Editar", root_path, {method: :get, class: "btn btn-warning"} %> <%= button_to "Deletar", root_path, {method: :delete, class: "btn btn-danger"} %></td>
+         <td class="d-flex gap-2"><%= button_to "Editar", edit_delivery_time_path(delivery_time), {method: :get, class: "btn btn-warning"} %> <%= button_to "Deletar", root_path, {method: :delete, class: "btn btn-danger"} %></td>
       <% end %>
 </tr>
 

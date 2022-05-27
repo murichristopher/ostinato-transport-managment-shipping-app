@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   resources :transport_companies, only: [:index, :show, :new, :create, :edit, :update]
   resources :carrier_vehicles, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :prices, param: :slug
+  resources :delivery_times, param: :slug
 end

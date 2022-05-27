@@ -1,6 +1,10 @@
 class ApplicationRecord < ActiveRecord::Base
   primary_abstract_class
 
+  def slugging
+    Digest::SHA1.hexdigest("#{id}")[0..8]
+  end
+
   def form_attributes
     form_attributes = {}
     self.attributes.each do |attr_name, attr_value|
