@@ -25,4 +25,9 @@ class Price < ApplicationRecord
       end
     end
   end
+
+
+  def full_description
+    { "Metros Cúbicos" => "#{cubic_meters_min.to_s}m³ á #{cubic_meters_max.to_s}m³", "Peso" => "#{weight_min.to_s}kg á #{weight_max.to_s}kg", "Valor por Km" => "R$#{value_per_km}" }
+  end
 end
