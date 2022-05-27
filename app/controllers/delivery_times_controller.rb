@@ -18,7 +18,7 @@ class DeliveryTimesController < ApplicationController
     @delivery_time.transport_company = current_user.transport_company
 
     if @delivery_time.save
-      redirect_to(delivery_times_path, notice:"Prazo de entrega cadastrado com sucesso!")
+      redirect_to(delivery_times_path, notice:"Prazo de envio cadastrado com sucesso!")
     else
       @errors = @delivery_time.errors.full_messages
       render :new
@@ -27,7 +27,7 @@ class DeliveryTimesController < ApplicationController
 
   def update
       if @delivery_time.update(delivery_time_params)
-        flash[:notice] = "Prazo de entraga editado com sucesso!"
+        flash[:notice] = "Prazo de entrega editado com sucesso!"
         redirect_to delivery_times_path
       else
         @errors = @delivery_time.errors.full_messages
@@ -36,8 +36,12 @@ class DeliveryTimesController < ApplicationController
   end
 
   def destroy
-    @delivery_time.destroy
-    redirect_to delivery_index_path
+    if @delivery_time.destroy
+        flash[:notice] = 'Prazo de envio deletado com sucesso!'
+        redirect_to delivery_times_path
+    else
+        flash[:alert] = 'Algo deu errado'
+    end
   end
 
   private
