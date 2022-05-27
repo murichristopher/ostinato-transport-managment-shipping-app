@@ -1,0 +1,46 @@
+<% @work_orders.each_with_index do |work_order, index| %>
+<div class="col-lg-3 c-line<%= index %>">
+  <div class="card mb-3" >
+
+  <% if work_order.pending? %>
+    <div class="card-header bg-warning text-white">
+      Pendente
+    </div>
+  <% elsif work_order.accepted? %>
+    <div class="card-header bg-primary text-white">
+      Aceita
+    </div>
+  <% elsif work_order.refused? %>
+    <div class="card-header bg-danger text-white">
+      Recusada
+    </div>
+  <% elsif work_order.on_carriage? %>
+    <div class="card-header bg-info text-white">
+      Em transporte
+    </div>
+  <% elsif work_order.received? %>
+    <div class="card-header bg-success text-white">
+      Recebida
+    </div>
+  <%end %>
+
+    <div class="card-body">
+      <h3 class="card-title fs-2"><%= link_to work_order.unique_code, work_order %></h3>
+      <ul class="list-group list-group-flush">
+      <li class="list-group-item">Transportadora: <%= work_order.transport_company.trading_name%></li>
+      <li class="list-group-item">Tempo Estimado de Envio:
+        <% if work_order.delivery_time.nil? %>
+          X
+        <% else %>
+         <%= work_order.delivery_time %> dias úteis
+        <% end %>
+      </li>
+  </li>
+    </ul>
+      <%= link_to "Ver detalhes", work_order, class:"btn btn-primary mt-2"%>
+      <p class="card-text mt-2 fs-6"><small class="text-muted">Atualizado em <%=  work_order[:updated_at].strftime("%d/%m/%Y")  %></small></p>
+    </div>
+  </div>
+  </div>
+
+<% end %>

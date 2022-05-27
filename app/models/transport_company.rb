@@ -6,6 +6,7 @@ class TransportCompany < ApplicationRecord
   has_many :carrier_vehicles
   has_many :prices
   has_many :delivery_times
+  has_many :work_orders
 
   #TransportCompany.last.users => search all users of a target transportcompany
   enum status: { inactive: 0, active: 5 }

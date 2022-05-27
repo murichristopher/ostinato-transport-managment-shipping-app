@@ -1,0 +1,19 @@
+<div class="navigation-area d-flex justify-content-between align-items-center">
+  <h1 class="mb-2">Ordens de Serviço</h1>
+  <% if current_admin %>
+    <%= button_to "Cadastrar Nova Ordem", new_transport_company_path, {method: :get, class: "btn btn-outline-success"} %>
+  <% end %>
+</div>
+<hr>
+
+<% if @work_orders.any? %>
+<div class="row scroll">
+  <%= render 'cards' %>
+</div>
+
+<% else %>
+
+<p>Nenhuma Ordem de serviço cadastrada</p>
+
+<% end %>
+
