@@ -99,12 +99,12 @@ RSpec.describe CarrierVehicle, type: :model do
       end
 
       it "false when 'year' is in invalid format" do
-        carrier_vehicle = CarrierVehicle.new(year: '234329432942934324')
+        carrier_vehicle = CarrierVehicle.new(maximum_load_capacity: -2)
         carrier_vehicle.valid?
 
-        res = carrier_vehicle.errors[:year]
+        res = carrier_vehicle.errors[:maximum_load_capacity]
 
-        expect(res).to include("não possui o tamanho esperado (4 caracteres)")
+        expect(res).to include("deve ser maior ou igual a 0")
       end
     end
 

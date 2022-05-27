@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe DeliveryTime, type: :time do
- describe "#valid?" do
+  describe "#valid?" do
     context "presence: " do
       it "false when 'km_min' is empty" do
         delivery_time = DeliveryTime.new(km_min: '')
@@ -55,7 +55,7 @@ RSpec.describe DeliveryTime, type: :time do
     end
   end
 
-  context "custom validations" do
+  context "custom validations:" do
     it "false when km_min is greater than km_max" do
       delivery_time = DeliveryTime.new(km_min: 8, km_max: 4)
       delivery_time.valid?
@@ -64,5 +64,23 @@ RSpec.describe DeliveryTime, type: :time do
       expect(res).to include("deve ser maior que o Quilômetro Mínimo")
     end
   end
+
+  context "format:" do
+    it 'km_min must be greater or equal than 0' do
+      delivery_time = DeliveryTime.new(km_min: -3)
+      delivery_time.valid?
+
+      res = delivery_time.errors[:km_min]
+      expect(res).to include("deve ser maior ou igual a 0")
+    end
+    it 'km_max must be greater or equal than 0' do
+      delivery_time = DeliveryTime.new(km_max: -3)
+      delivery_time.valid?
+
+      res = delivery_time.errors[:km_max]
+      expect(res).to include("deve ser maior ou igual a 0")
+    end
+  end
+
 end
 

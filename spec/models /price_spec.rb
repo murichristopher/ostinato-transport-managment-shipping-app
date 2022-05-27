@@ -88,5 +88,44 @@ describe "#valid?" do
           expect(res).to include("deve ser maior que o Peso Mínimo")
         end
     end
+
+    context "format:" do
+    it 'cubic_meters_min must be greater or equal than 0' do
+      price = Price.new(cubic_meters_min: -3)
+      price.valid?
+
+      res = price.errors[:cubic_meters_min]
+      expect(res).to include("deve ser maior ou igual a 0")
+    end
+    it 'cubic_meters_max must be greater or equal than 0' do
+      price = Price.new(cubic_meters_max: -3)
+      price.valid?
+
+      res = price.errors[:cubic_meters_max]
+      expect(res).to include("deve ser maior ou igual a 0")
+    end
+    it 'weight_min must be greater or equal than 0' do
+      price = Price.new(weight_min: -3)
+      price.valid?
+
+      res = price.errors[:weight_min]
+      expect(res).to include("deve ser maior ou igual a 0")
+    end
+    it 'weight_max must be greater or equal than 0' do
+      price = Price.new(weight_max: -3)
+      price.valid?
+
+      res = price.errors[:weight_max]
+      expect(res).to include("deve ser maior ou igual a 0")
+    end
+     it 'value_per_km must be greater or equal than 0' do
+      delivery_time = Price.new(value_per_km: -3)
+      delivery_time.valid?
+
+      res = delivery_time.errors[:value_per_km]
+      expect(res).to include("deve ser maior ou igual a 0")
+    end
+  end
+
 end
 end
