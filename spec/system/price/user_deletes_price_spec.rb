@@ -25,7 +25,5 @@ describe 'Usuário deleta um preço' do
       expect(page).not_to have_content("0.001m³ á 2.9m³ 30kg á 100kg R$7.25")
       expect(page).to have_content("0.001m³ á 0.9m³ 0.1kg á 29.99kg R$3.25")
     end
-
-
   end
 end

@@ -25,6 +25,7 @@ class TransportCompaniesController < ApplicationController
 
   def show
     @prices = @transport_company.prices
+    @delivery_times = @transport_company.delivery_times
   end
 
   def toggle_status

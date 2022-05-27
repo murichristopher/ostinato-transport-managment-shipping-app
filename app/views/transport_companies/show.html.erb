@@ -1,4 +1,3 @@
-
 <div class="navigation-area d-flex justify-content-between align-items-center">
 
 <div class="d-flex justify-content-center align-items-center gap-2 ">
@@ -29,11 +28,19 @@
 <%= render 'attributes'%>
 </div>
 
-<h1 class="mt-5">Tabela de preços</h1>
+<h2 class="mt-5">Tabela de preços</h2>
 <hr>
 
 <% if @prices.any?%>
   <%= render 'shared/prices/table'%>
 <% else %>
   <p>Nenhuma tabela de preços cadastrada</p>
+<% end %>
+
+<h2 class="mt-5">Prazos de envio</h2>
+<hr>
+<% if @delivery_times.any? %>
+  <%= render 'shared/delivery_times/table'%>
+<% else %>
+  <p>Nenhum prazo de envio cadastrado</p>
 <% end %>

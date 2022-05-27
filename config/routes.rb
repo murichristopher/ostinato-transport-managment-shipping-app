@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   authenticate :user do
     resources :carrier_vehicles
     resources :prices
+    resources :delivery_times
   end
 
   resources :transport_companies do

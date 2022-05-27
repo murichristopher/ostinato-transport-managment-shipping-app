@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_26_181547) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_26_211504) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -35,6 +35,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_181547) do
     t.string "slug"
     t.index ["slug"], name: "index_carrier_vehicles_on_slug", unique: true
     t.index ["transport_company_id"], name: "index_carrier_vehicles_on_transport_company_id"
+  end
+
+  create_table "delivery_times", force: :cascade do |t|
+    t.integer "time"
+    t.integer "transport_company_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "km_min"
+    t.integer "km_max"
+    t.index ["transport_company_id"], name: "index_delivery_times_on_transport_company_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -91,6 +101,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_181547) do
   end
 
   add_foreign_key "carrier_vehicles", "transport_companies"
+  add_foreign_key "delivery_times", "transport_companies"
   add_foreign_key "prices", "transport_companies"
   add_foreign_key "users", "transport_companies"
 end
