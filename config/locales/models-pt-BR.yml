@@ -8,6 +8,7 @@
         carrier_vehicle: "Veículo"
         price: "Preço"
         delivery_time: "Prazo de Envio"
+        work_order: "Ordem de Serviço"
       attributes:
         warehouse:
           name: "Nome"
@@ -57,3 +58,21 @@
           km_min: "Quilômetros Mínimo"
           km_max: "Quilômetros Máximo"
           time: "Prazo"
+        work_order:
+          statuses:
+            pending: "pendente"
+          sender_address: "Endereço do Remetente"
+          receiver_address: "Endereço do Destinatário"
+          receiver_name: "Nome do Destinatário"
+          receiver_cpf: "CPF do Destinatário"
+          delivery_time: "Prazo Estimado de Envio"
+          total_price: "Frete"
+          cubic_size: "Metros Cúbicos"
+          unique_code: "Código"
+          total_weight: "Peso Total"
+          transport_company_id: "Transportadora"
+          transport_company: "Transportadora"
+          total_distance: "Distância Total"
+          status: "Situação"
+
+

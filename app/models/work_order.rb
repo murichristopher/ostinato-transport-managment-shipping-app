@@ -6,7 +6,7 @@ class WorkOrder < ApplicationRecord
   before_create :calc_total_price
   before_create :generate_unique_code
 
-  enum status: { pending: 1, accepted: 2, refused: 3, on_carriage: 4, received: 5}
+  enum status: { pendente: 1, aceita: 2, recusada: 3, em_transporte: 4, recebida: 5}
 
   validates :sender_address, :receiver_address, :receiver_name, :receiver_cpf , :cubic_size, :total_weight, :total_distance,  presence: true
 

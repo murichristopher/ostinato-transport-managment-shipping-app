@@ -1,7 +1,7 @@
 class WorkOrdersController < ApplicationController
   before_action :authenticate_user
   before_action :set_visibility
-
+  before_action :authenticate_admin!, only: [:new]
 
   def index
   end
@@ -10,16 +10,21 @@ class WorkOrdersController < ApplicationController
     @work_order = WorkOrder.find(params[:id])
   end
 
+
   def new
     @work_order = WorkOrder.new
   end
 
   def create
-    @work_order = WorkOrder.new(params[:work_order])
+
+    @work_order = WorkOrder.new(work_order_params)
+    @work_order.transport_company_id = params[:transport_company_id]
+
     if @work_order.save
-      redirect_to @work_order, :notice => "Successfully created work order."
+      redirect_to(work_orders_path, notice:"Ordem de Serviço cadastrada com sucesso!")
     else
-      render :action => 'new'
+      @errors = @work_order.errors.full_messages
+      render :new
     end
   end
 
@@ -46,11 +51,29 @@ class WorkOrdersController < ApplicationController
     @work_order = WorkOrder.find(params[:id])
   end
 
-  def work_order_params
+  def new_directly_assign
+    @work_order = WorkOrder.new
+  end
 
+  def create_directly_assign
+    @work_order = WorkOrder.new(work_order_params)
+    transport_company = TransportCompany.friendly.find(params[:id])
+
+    @work_order.transport_company = transport_company
+
+    if @work_order.save
+      redirect_to(@work_order, notice:"Ordem de Serviço cadastrada com sucesso!")
+    else
+      @errors = @work_order.errors.full_messages
+      render :new_directly_assign
+    end
   end
 
   private
+
+  def work_order_params
+    params.require(:work_order).permit(:sender_address, :receiver_address, :receiver_name, :receiver_cpf, :cubic_size, :total_weight, :total_distance)
+  end
 
   def authenticate_user
     if current_user && current_user.guest?
