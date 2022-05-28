@@ -17,6 +17,15 @@ class WorkOrder < ApplicationRecord
   #custom validations
   validate :check_transport_company
 
+
+  def consulta
+    prices = Price.where("cubic_meters_min <= ? AND cubic_meters_max >= ? AND weight_min <= ? AND weight_max >= ?", cubic_size, cubic_size, total_weight, total_weight)
+  end
+
+  def consulta_prazo(target)
+    DeliveryTime.where(transport_company: target.transport_company_id).where("km_min <= ? AND km_max >= ?", total_distance, total_distance)
+  end
+
   private
 
   def calc_delivery_time

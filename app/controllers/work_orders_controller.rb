@@ -69,6 +69,16 @@ class WorkOrdersController < ApplicationController
     end
   end
 
+  def search
+    cubic_size = params[:work_order][:cubic_size]
+    total_weight = params[:work_order][:total_weight]
+    @total_distance = params[:work_order][:total_distance].to_i
+
+    @budgets = Price.where("cubic_meters_min <= ? AND cubic_meters_max >= ? AND weight_min <= ? AND weight_max >= ?", cubic_size, cubic_size, total_weight, total_weight)
+
+
+  end
+
   private
 
   def work_order_params

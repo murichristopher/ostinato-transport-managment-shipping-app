@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     member do
       post :create_directly_assign
     end
+    collection do
+      get :search
+    end
   end
 
 
