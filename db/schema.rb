@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_27_182248) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_29_032258) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -108,7 +108,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_27_182248) do
     t.string "receiver_name"
     t.string "receiver_cpf"
     t.integer "delivery_time"
-    t.integer "total_price"
+    t.decimal "total_price"
     t.decimal "cubic_size"
     t.decimal "total_weight"
     t.string "unique_code"
@@ -117,6 +117,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_27_182248) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 1
     t.integer "total_distance"
+    t.string "slug"
+    t.index ["slug"], name: "index_work_orders_on_slug", unique: true
     t.index ["transport_company_id"], name: "index_work_orders_on_transport_company_id"
   end
 

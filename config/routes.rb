@@ -27,8 +27,15 @@ Rails.application.routes.draw do
     member do
       post :create_directly_assign
     end
+    member do
+      get :new_budget_assign
+    end
+    member do
+      post :create_budget_assign
+    end
     collection do
-      get :search
+      get :budget
+      get :new_budget
     end
   end
 

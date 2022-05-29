@@ -14,7 +14,7 @@
 
     <% if @transport_company.active? %>
       <%= button_to "Desativar", toggle_status_transport_company_path, {method: :patch, class: "btn btn-outline-danger"} %>
-      <%= button_to "Atribuir Ordem de Serviço", new_directly_assign_work_order_path, {method: :get, class: "btn btn-outline-danger"} %>
+      <%= button_to "Cadastrar Ordem de Serviço", new_directly_assign_work_order_path, {method: :get, class: "btn btn-outline-danger"} %>
     <% else %>
       <%= button_to "Ativar", toggle_status_transport_company_path, {method: :patch, class: "btn btn-outline-success"} %>
     <% end %>

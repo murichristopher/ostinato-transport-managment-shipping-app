@@ -1,7 +1,7 @@
 class CarrierVehicle < ApplicationRecord
 
   extend FriendlyId
-  friendly_id :license_plate, use: :slugged
+  friendly_id :slugging, use: [:slugged, :history, :finders]
 
   belongs_to :transport_company
 

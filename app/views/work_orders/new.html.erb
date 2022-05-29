@@ -1,6 +1,5 @@
 <h2>Cadastrando Ordem de serviço</h2>
 
-<%= params %>
 <%= render 'shared/form/errors' %>
 
 <%= form_for @work_order,:url => url_for(:controller => 'work_orders', :action => 'create_directly_assign') do |f| %>
@@ -50,20 +49,3 @@
   <%= f.submit 'Salvar', class:"btn btn-primary fs-5", name: "transport_company_id",value: params[:transport_company] %>
 
 <% end %>
-<%#
-  create_table "work_orders", force: :cascade do |t|
-    t.string "receiver_address"
-    t.string "receiver_name"
-    t.string "receiver_cpf"
-    t.integer "delivery_time"
-    t.integer "total_price"
-    t.decimal "cubic_size"
-    t.decimal "total_weight"
-    t.string "unique_code"
-    t.integer "transport_company_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "status", default: 1
-    t.integer "total_distance"
-    t.index ["transport_company_id"], name: "index_work_orders_on_transport_company_id"
-  end %>

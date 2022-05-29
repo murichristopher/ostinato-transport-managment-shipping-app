@@ -1,4 +1,7 @@
 class WorkOrder < ApplicationRecord
+  extend FriendlyId
+  friendly_id :unique_code, use: :slugged
+
   belongs_to :transport_company
   belongs_to :carrier_vehicle, optional: true
 
@@ -19,7 +22,7 @@ class WorkOrder < ApplicationRecord
 
 
   def consulta
-    prices = Price.where("cubic_meters_min <= ? AND cubic_meters_max >= ? AND weight_min <= ? AND weight_max >= ?", cubic_size, cubic_size, total_weight, total_weight)
+    @prices = Price.where("cubic_meters_min <= ? AND cubic_meters_max >= ? AND weight_min <= ? AND weight_max >= ?", cubic_size, cubic_size, total_weight, total_weight)
   end
 
   def consulta_prazo(target)
@@ -59,7 +62,7 @@ class WorkOrder < ApplicationRecord
   end
 
   def calc_total_price
-    self.total_price = total_distance * get_price().last.value_per_km
+    self.total_price = total_distance * get_price().first.value_per_km
   end
 
 

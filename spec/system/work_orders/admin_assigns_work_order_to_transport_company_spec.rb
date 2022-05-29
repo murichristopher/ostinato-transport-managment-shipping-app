@@ -5,7 +5,7 @@ describe 'Admin atribui uma Ordem de serviço á uma Transportadora' do
   it 'com sucesso' do
     transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "34028316000103", full_address: "Rua dos Andares, 294")
 
-    admin = Admin.create!(email:"joao@sedex.com.br", password:"123456")
+    admin = Admin.create!(email:"joao@sistemadefrete.com.br", password:"123456")
     login_as(admin, scope: :admin)
 
     allow(SecureRandom).to receive(:alphanumeric).and_return('ANS82HJCBAS')
@@ -21,7 +21,7 @@ describe 'Admin atribui uma Ordem de serviço á uma Transportadora' do
 
     click_on("SEDEX")
 
-    click_on("Atribuir Ordem de Serviço")
+    click_on("Cadastrar Ordem de Serviço")
 
     fill_in "Endereço do Remetente",	with: "Rua dos Andares, 232"
     fill_in "Endereço do Destinatário",	with: "Rua dos Andares, 132"
@@ -38,9 +38,8 @@ describe 'Admin atribui uma Ordem de serviço á uma Transportadora' do
     expect(page).to have_content("Endereço do Remetente Rua dos Andares, 232")
     expect(page).to have_content("Endereço do Destinatário Rua dos Andares, 132")
     expect(page).to have_content("Nome do Destinatário Gabriel Fernandes Andrade")
-    expect(page).to have_content("CPF do Destinatário 12345678901")
     expect(page).to have_content("Prazo Estimado de Envio 2 dias úteis")
-    expect(page).to have_content("Frete R$ 21,00")
+    expect(page).to have_content("Frete R$ 21,75")
     expect(page).to have_content("Metros Cúbicos 1.2m³")
     expect(page).to have_content("Peso Total 33.0kg")
     expect(page).to have_content("Distância Total 3km")
@@ -49,7 +48,8 @@ describe 'Admin atribui uma Ordem de serviço á uma Transportadora' do
   it 'com dados inválidos ou incompletos' do
 transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "34028316000103", full_address: "Rua dos Andares, 294")
 
-    admin = Admin.create!(email:"joao@sedex.com.br", password:"123456")
+    admin = Admin.create!(email:"joao@sistemadefrete.com.br", password:"123456")
+
     login_as(admin, scope: :admin)
 
     Price.create!(cubic_meters_min: 0.001, cubic_meters_max: 0.900, weight_min:0.1, weight_max:29.99, value_per_km:3.25, transport_company:transport_company)
@@ -63,7 +63,7 @@ transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name
 
     click_on("SEDEX")
 
-    click_on("Atribuir Ordem de Serviço")
+    click_on("Cadastrar Ordem de Serviço")
 
     fill_in "Endereço do Remetente",	with: ""
     fill_in "Endereço do Destinatário",	with: "Rua dos Andares, 132"

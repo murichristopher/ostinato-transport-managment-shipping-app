@@ -11,7 +11,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= form_with(model: WorkOrder.new, url: search_work_orders_path, method: :get) do |f| %>
+<%= form_with(model: WorkOrder.new, url: budget_work_orders_path, method: :get) do |f| %>
   <div class="row">
     <%= f.label :cubic_size, class:"col-sm-6 col-form-label"%>
     <div class="col-sm-5">
@@ -30,7 +30,6 @@
       <%= f.number_field :total_distance, step:0.01, class:"form-control fs-5", placeholder:"em km" , min: 0.1%>
     </div>
   </div>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>

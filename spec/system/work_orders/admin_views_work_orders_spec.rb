@@ -5,7 +5,7 @@ describe 'Admin visualiza ordens de serviço' do
     transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "34028316000103", full_address: "Rua dos Andares, 294")
     second_transport_company = TransportCompany.create!(trading_name: "TEDEX", company_name: "TEDEX DISTRIBUICOES LTDA", domain: "tedex.com.br", registration_number: "12028316000103", full_address: "Rua dos Andares, 294")
 
-    admin = Admin.create!(email:"joao@sedex.com.br", password:"123456")
+    admin = Admin.create!(email:"joao@sistemadefrete.com.br", password:"123456")
     login_as(admin, scope: :admin)
 
     allow(SecureRandom).to receive(:alphanumeric).and_return('ANS82HJCBAS')
@@ -30,7 +30,7 @@ describe 'Admin visualiza ordens de serviço' do
 
     visit(root_path)
 
-    click_on("Ver Ordens de serviço")
+    click_on("Ordens de serviço")
 
     within(".c-line0") do
       expect(page).to have_content("#ANS82HJCBAS")

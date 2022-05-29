@@ -1,0 +1,26 @@
+<h1>Fazer orçamento</h1>
+
+<%= form_with(model: WorkOrder.new, url: budget_work_orders_path, method: :get) do |f| %>
+  <div class="row">
+    <%= f.label :cubic_size, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-5">
+      <%= f.number_field :cubic_size, step:0.01, class:"form-control fs-5", placeholder:"em m³" %>
+    </div>
+  </div>
+  <div class="row">
+    <%= f.label :total_weight, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-5">
+      <%= f.number_field :total_weight, step:0.01, class:"form-control fs-5", placeholder:"em kg", min: 0.1 %>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <%= f.label :total_distance, class:"col-sm-6 col-form-label"%>
+    <div class="col-sm-5">
+      <%= f.number_field :total_distance, step:0.01, class:"form-control fs-5", placeholder:"em km" , min: 0.1%>
+    </div>
+  </div>
+
+
+  <%= f.submit 'Enviar', class:"btn btn-success fs-5" %>
+
+<% end %>
