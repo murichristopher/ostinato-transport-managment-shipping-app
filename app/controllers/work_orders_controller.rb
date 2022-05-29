@@ -2,12 +2,23 @@ class WorkOrdersController < ApplicationController
   before_action :authenticate_user, except: [:show]
   before_action :set_visibility, except: [:show]
   before_action :authenticate_admin!, except: [:index, :show]
-  before_action :set_work_orders_and_check_company, only: [:show]
+  before_action :set_work_orders_and_check_company, only: [:show, :destroy]
 
   def index
   end
 
   def show
+  end
+
+  def destroy
+    return redirect_to work_order_path(@work_order), alert:"Não é permitido alterar Ordens de serviço que seu estado não sejam 'pendente' ou 'recusada'" if !@work_order.pendente? && !@work_order.recusada?
+
+      if @work_order.destroy
+        flash[:notice] = 'Ordem de serviço deletada com sucesso!'
+        redirect_to work_orders_path
+      else
+        flash[:alert] = 'Algo deu errado'
+      end
   end
 
   def new

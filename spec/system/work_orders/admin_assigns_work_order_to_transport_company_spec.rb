@@ -46,7 +46,7 @@ describe 'Admin atribui uma Ordem de serviço á uma Transportadora' do
   end
 
   it 'com dados inválidos ou incompletos' do
-transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "34028316000103", full_address: "Rua dos Andares, 294")
+    transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "34028316000103", full_address: "Rua dos Andares, 294")
 
     admin = Admin.create!(email:"joao@sistemadefrete.com.br", password:"123456")
 

@@ -36,7 +36,7 @@ class PricesController < ApplicationController
       end
   end
 
-   def destroy
+  def destroy
       if @price.destroy
         flash[:notice] = 'Preço deletado com sucesso!'
         redirect_to prices_path
