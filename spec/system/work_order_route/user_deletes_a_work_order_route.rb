@@ -1,8 +1,9 @@
 require 'rails_helper'
 
-describe 'Usuário aceita uma ordem de serviço' do
+describe 'Usuário deleta uma Atualização de rota' do
   it 'com sucesso' do
     transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "34028316000103", full_address: "Rua dos Andares, 294")
+    carrier_vehicle = CarrierVehicle.create!(license_plate: "ABC2334", brand: "Sedan", model: "Master", year: "2005", maximum_load_capacity: 200, transport_company:transport_company)
 
     user = User.create!(email:"joao@sedex.com.br", password:"123456")
     login_as(user, scope: :user)
@@ -19,9 +20,6 @@ describe 'Usuário aceita uma ordem de serviço' do
     click_on("Ordens de serviço")
 
     within(".c-line0") do
-      expect(page).to have_content("#ANS82HJCBAS")
-      expect(page).to have_content("Transportadora: SEDEX")
-      expect(page).to have_content("Tempo Estimado de Envio: 2 dias úteis")
       click_on("Ver detalhes")
     end
 
@@ -33,10 +31,27 @@ describe 'Usuário aceita uma ordem de serviço' do
     end
 
     expect(page).to have_content("Ordem de serviço foi aceita com sucesso!")
-    expect(page).to have_content("aceita")
-    expect(page).to have_content("Registrar Atualização de rota")
 
+    click_on("Registrar Atualização de rota")
 
+    expect(page).to have_content("Deverá ser atríbuida á um veículo")
+    expect(page).to have_content("Deverá possuir um título")
+    expect(page).to have_content("Deverá possuir uma última localização")
+    expect(page).to have_content("A data não pode ser futura")
 
+    fill_in "Título",	with: "Á caminho de UNIDADE DE TRATAMENTO"
+    select("Master", from:"carrier_vehicle[id]")
+    select("Em transporte", from:"status")
+    fill_in "Ultima localização",	with: "UNIDADE SEDEX - Rua dos Andradas, 22"
+    fill_in "Próxima localização",	with: "UNIDADE DE TRATAMENTO - Rua do Redemoinho, 44"
+
+    click_on("Enviar")
+
+    expect(page).to have_content("Á CAMINHO DE UNIDADE DE TRATAMENTO")
+    expect(page).to have_content("Algumas horas atrás")
+    expect(page).to have_button("Deletar")
+    expect(page).to have_content("De: UNIDADE SEDEX - Rua dos Andradas, 22")
+    expect(page).to have_content("Para: UNIDADE DE TRATAMENTO - Rua do Redemoinho, 44")
+    expect(page).to have_content("Veículo: Master | Sedan")
   end
 end

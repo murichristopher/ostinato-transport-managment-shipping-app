@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User visualiza detalhes de uma ordem de serviço' do
+describe 'User autenticado visualiza detalhes de uma ordem de serviço de sua transportadora' do
   it 'com sucesso' do
     transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "34028316000103", full_address: "Rua dos Andares, 294")
 
@@ -41,15 +41,6 @@ describe 'User visualiza detalhes de uma ordem de serviço' do
       expect(page).to have_content("Aceitar Ordem de serviço")
     end
 
-    click_on("Aceitar Ordem de serviço")
-
-    click_on("Registrar Atualização de rota")
-
-    within(".modal") do
-      click_on("Enviar")
-    end
-
-    expect(page).to have_content("blabla")
 
   end
 end

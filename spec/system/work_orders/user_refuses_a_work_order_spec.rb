@@ -29,12 +29,12 @@ describe 'Usuário aceita uma ordem de serviço' do
 
     within(".navigation-area") do
       expect(page).not_to have_content("Registrar Atualização de rota")
-      click_on("Aceitar Ordem de serviço")
+      click_on("Recusar Ordem de serviço")
     end
 
-    expect(page).to have_content("Ordem de serviço foi aceita com sucesso!")
-    expect(page).to have_content("aceita")
-    expect(page).to have_content("Registrar Atualização de rota")
+    expect(page).to have_content("Ordem de serviço foi recusada com sucesso!")
+    expect(page).to have_content("recusada")
+    expect(page).not_to have_content("Registrar Atualização de rota")
 
 
 

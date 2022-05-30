@@ -73,12 +73,7 @@ describe "Admin deleta uma Ordem de serviço" do
 
     expect(page).not_to have_content("pendente")
 
-    click_on("Deletar")
-
-    expect(path).not_to eq(work_orders_path)
-
-    expect(page).to have_content("#ANS82HJCBAS")
-    expect(page).to have_content("Não é permitido alterar Ordens de serviço que seu estado não sejam 'pendente' ou 'recusada'")
+    expect(page).not_to have_button("Deletar")
   end
 end
 

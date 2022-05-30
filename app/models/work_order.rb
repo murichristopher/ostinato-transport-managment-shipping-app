@@ -11,6 +11,7 @@ class WorkOrder < ApplicationRecord
   has_many :work_order_routes
   has_one :carrier_vehicle
 
+
   enum status: { pendente: 1, aceita: 2, recusada: 3, em_transporte: 4, recebida: 5}
 
   validates :sender_address, :receiver_address, :receiver_name, :receiver_cpf , :cubic_size, :total_weight, :total_distance,  presence: true
@@ -30,7 +31,7 @@ class WorkOrder < ApplicationRecord
     if delivery_time.empty?
       self.delivery_time = nil
     else
-      self.delivery_time = delivery_time.last.time
+      self.delivery_time = delivery_time.first.time
     end
   end
 

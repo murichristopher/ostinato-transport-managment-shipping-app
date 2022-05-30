@@ -1,15 +1,20 @@
 <% if current_admin %>
-        <%= button_to "Deletar", work_order_path(@work_order), {method: :delete, class: "btn btn-outline-danger"} %>
+        <% if @work_order.pendente? or @work_order.recusada?%>
+          <%= button_to "Deletar", work_order_path(@work_order), {method: :delete, class: "btn btn-outline-danger"} %>
+        <% end %>
         <%= button_to "Ver transportadora", transport_company_path(@work_order.transport_company), method: :get, class:"btn btn-outline-success"%>
-      <% end %>
+<% end %>
 
       <% if current_user && @authenticated %>
         <% if @work_order.pendente?%>
           <%= button_to "Aceitar Ordem de serviço", accept_work_order_path, {method: :patch, class: "btn btn-outline-success"} %>
-          <%= button_to "Rejeitar Ordem de serviço", refuse_work_order_path, {method: :patch, class: "btn btn-outline-danger"} %>
+          <%= button_to "Recusar Ordem de serviço", refuse_work_order_path, {method: :patch, class: "btn btn-outline-danger"} %>
         <% elsif  @work_order.recusada? %>
             <%= button_to "Aceitar Ordem de serviço", accept_work_order_path, {method: :patch, class: "btn btn-outline-success"} %>
-        <% elsif @work_order.aceita? or @work_order.em_transporte?%>
+        <% elsif @work_order.aceita? %>
+            <%= render 'update_route_modal'%>
+            <%= button_to "Recusar Ordem de serviço", refuse_work_order_path, {method: :patch, class: "btn btn-outline-danger"} %>
+        <% elsif @work_order.em_transporte? or @work_order.recebida? %>
             <%= render 'update_route_modal'%>
         <% end %>
       <% end %>

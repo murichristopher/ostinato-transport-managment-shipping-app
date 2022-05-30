@@ -5,9 +5,11 @@ class WorkOrderRoutesController < ApplicationController
 
     @work_order_route.work_order = WorkOrder.friendly.find(params[:work_order_route][:id])
 
-    @work_order_route.work_order.carrier_vehicle_id = params[:carrier_vehicle][:id]
+    if @work_order_route.work_order.carrier_vehicle.nil? && params[:carrier_vehicle][:id].present?
+      @work_order_route.work_order.carrier_vehicle = CarrierVehicle.find(params[:carrier_vehicle][:id])
+    end
 
-    if @work_order_route.work_order.status != "pendente" && @work_order_route.work_order.status != "recusada" && @work_order_route.work_order.status != "recebida"
+    if @work_order_route.work_order.status != "pendente" && @work_order_route.work_order.status != "recusada"
       if current_user.transport_company == @work_order_route.work_order.transport_company
         if @work_order_route.save
 

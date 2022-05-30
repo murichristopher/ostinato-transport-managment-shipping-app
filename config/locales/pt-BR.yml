@@ -1,8 +1,4 @@
 pt-BR:
   hello: 'olá'
-  registration_number: "oi"
-  models:
-    carrier_vehicle:
-  attributes:
-    carrier_vehicle:
-      license_plate: "licensa"
+
+

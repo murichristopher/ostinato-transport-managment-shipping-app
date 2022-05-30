@@ -16,6 +16,8 @@ class WorkOrdersController < ApplicationController
     end
 
     @work_order_routes = @work_order.work_order_routes.reverse()
+
+    @carrier_vehicles = @work_order.transport_company.carrier_vehicles.where("maximum_load_capacity > ?", @work_order.total_weight)
   end
 
   def accept

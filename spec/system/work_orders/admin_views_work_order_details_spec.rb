@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe 'Usuário aceita uma ordem de serviço' do
+describe 'Admin visualiza detalhes de uma ordem de serviço' do
   it 'com sucesso' do
     transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "34028316000103", full_address: "Rua dos Andares, 294")
 
-    user = User.create!(email:"joao@sedex.com.br", password:"123456")
-    login_as(user, scope: :user)
+    admin = Admin.create!(email:"joao@sistemadefrete.com.br", password:"123456")
+    login_as(admin, scope: :admin)
 
     allow(SecureRandom).to receive(:alphanumeric).and_return('ANS82HJCBAS')
 
@@ -25,18 +25,20 @@ describe 'Usuário aceita uma ordem de serviço' do
       click_on("Ver detalhes")
     end
 
-    expect(page).to have_content("pendente")
+    expect(page).to have_content("#ANS82HJCBAS")
+    expect(page).to have_content("Endereço do Remetente Rua dos Andares, 121")
+    expect(page).to have_content("Endereço do Destinatário Rua Dos Felícios, 91")
+    expect(page).to have_content("Nome do Destinatário Márcio Andrade")
+    expect(page).to have_content("Transportadora SEDEX")
+    expect(page).to have_content("Prazo Estimado de Envio 2 dias úteis")
+    expect(page).to have_content("Frete R$ 9,75")
+    expect(page).to have_content("Metros Cúbicos 0.3m³")
+    expect(page).to have_content("Distância Total 3km")
 
     within(".navigation-area") do
-      expect(page).not_to have_content("Registrar Atualização de rota")
-      click_on("Aceitar Ordem de serviço")
+      expect(page).to have_content("Deletar")
+      expect(page).to have_content("Ver transportadora")
+      expect(page).not_to have_content("Aceitar Ordem de serviço")
     end
-
-    expect(page).to have_content("Ordem de serviço foi aceita com sucesso!")
-    expect(page).to have_content("aceita")
-    expect(page).to have_content("Registrar Atualização de rota")
-
-
-
   end
 end

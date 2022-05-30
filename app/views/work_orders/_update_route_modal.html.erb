@@ -7,22 +7,35 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
+
         <h4 class="modal-title" id="exampleModalLabel">Registrar Atualização de rota</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     <div class="modal-body">
+
+     <div class="alert-warning p-3 mb-2">
+        <% if @work_order.carrier_vehicle.nil? %>
+          <p>Deverá ser atríbuida á um veículo</p>
+        <% end %>
+          <p>Deverá possuir um título</p>
+          <p>Deverá possuir uma última localização</p>
+          <p>A data não pode ser futura</p>
+      </div>
+
       <%= form_with model: WorkOrderRoute.new, local: true, data: { turbo: false } do |f| %>
 
-      <% if @work_order.carrier_vehicle_id.nil? %>
+      <% if @work_order.carrier_vehicle.nil? %>
           <div class="row mb-2">
+            <label class="col-sm-12 col-form-label">Veículos disponíveis</label>
+
             <div class="col-sm-12 mb-2">
-              <%= collection_select(:carrier_vehicle, :id, @work_order.transport_company.carrier_vehicles, :id, :model, {prompt: "Selecione um veículo"}, {class: "form-select"}) %>
+              <%= collection_select(:carrier_vehicle, :id, @carrier_vehicles, :id, :model, {prompt: "Selecione um veículo"}, {class: "form-select"}) %>
             </div>
           </div>
         <% end %>
 
       <div class="row mb-2">
-          <label clss="col-sm-12 col-form-label">Status</label>
+          <label class="col-sm-12 col-form-label">Status</label>
 
           <div class="col-sm-12 mb-2">
           <select name="status" id="cars", class="form-select">
@@ -42,7 +55,7 @@
         <div class="row mb-2">
           <div class="col mb-2">
             <%= f.label :date, class: "mb-2" %>
-              <%= f.date_select :date, {start_month: Date.today.month, start_year: Date.today.year, order: [:day, :month, :year]}, {class: 'form-select'} %>
+              <%= f.date_select :date, {start_day: Date.today, start_month: Date.today.month, start_year: Date.today.year, order: [:day, :month, :year]}, {class: 'form-select'} %>
           </div>
         </div>
         <div class="row mb-2">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_30_031755) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_30_181912) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -33,8 +33,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_30_031755) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.integer "work_order_id"
+    t.integer "work_order_route_id"
     t.index ["slug"], name: "index_carrier_vehicles_on_slug", unique: true
     t.index ["transport_company_id"], name: "index_carrier_vehicles_on_transport_company_id"
+    t.index ["work_order_id"], name: "index_carrier_vehicles_on_work_order_id"
+    t.index ["work_order_route_id"], name: "index_carrier_vehicles_on_work_order_route_id"
   end
 
   create_table "delivery_times", force: :cascade do |t|
@@ -111,6 +115,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_30_031755) do
     t.datetime "updated_at", null: false
     t.string "title"
     t.integer "elapsed_time"
+    t.integer "carrier_vehicle_id"
+    t.index ["carrier_vehicle_id"], name: "index_work_order_routes_on_carrier_vehicle_id"
     t.index ["work_order_id"], name: "index_work_order_routes_on_work_order_id"
   end
 
@@ -130,17 +136,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_30_031755) do
     t.integer "status", default: 1
     t.integer "total_distance"
     t.string "slug"
-    t.integer "carrier_vehicle_id"
-    t.index ["carrier_vehicle_id"], name: "index_work_orders_on_carrier_vehicle_id"
     t.index ["slug"], name: "index_work_orders_on_slug", unique: true
     t.index ["transport_company_id"], name: "index_work_orders_on_transport_company_id"
   end
 
   add_foreign_key "carrier_vehicles", "transport_companies"
+  add_foreign_key "carrier_vehicles", "work_order_routes"
+  add_foreign_key "carrier_vehicles", "work_orders"
   add_foreign_key "delivery_times", "transport_companies"
   add_foreign_key "prices", "transport_companies"
   add_foreign_key "users", "transport_companies"
+  add_foreign_key "work_order_routes", "carrier_vehicles"
   add_foreign_key "work_order_routes", "work_orders"
-  add_foreign_key "work_orders", "carrier_vehicles"
   add_foreign_key "work_orders", "transport_companies"
 end
