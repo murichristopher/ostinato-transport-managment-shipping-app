@@ -36,6 +36,9 @@ class WorkOrderRoutesController < ApplicationController
     @work_order = WorkOrder.friendly.find(params[:work_order])
 
     if current_user.transport_company == @work_order.transport_company
+      @route.carrier_vehicle = nil
+      @route.work_order = nil
+      #foreign key constraint
       return redirect_to @work_order, notice: "Atualização deletada com sucesso!" if @route.destroy
     end
   end

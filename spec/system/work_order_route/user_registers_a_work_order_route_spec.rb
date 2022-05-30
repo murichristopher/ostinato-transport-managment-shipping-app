@@ -45,8 +45,6 @@ describe 'Usuário registra uma Atualização de rota' do
     fill_in "Ultima localização",	with: "UNIDADE SEDEX - Rua dos Andradas, 22"
     fill_in "Próxima localização",	with: "UNIDADE DE TRATAMENTO - Rua do Redemoinho, 44"
 
-    #WorkOrderRoute.create!(title:"Á caminho de UNIDADE DE TRATAMENTO", last_location:"UNIDADE SEDEX - Rua dos Andradas, 22" next_location:"UNIDADE SEDEX - Rua dos Andradas, 22", work_order: work_order)
-
     click_on("Enviar")
 
     expect(page).to have_content("Atualização de rota registrada com sucesso!")
