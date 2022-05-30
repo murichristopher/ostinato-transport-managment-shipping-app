@@ -54,3 +54,30 @@ footer{
   text-decoration: none;
   color: inherit;
 }
+
+/* status of work_orders */
+
+.pendente{
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.aceita{
+  background-color: #0dcaf0;
+}
+
+.recusada{
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.em_transporte{
+  background-color: #fd7e14;
+  color: #fff;
+}
+
+.recebida{
+  background-color: #20c997;
+  color: #fff;
+}
+

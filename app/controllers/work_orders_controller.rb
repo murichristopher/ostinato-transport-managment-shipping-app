@@ -1,16 +1,38 @@
 class WorkOrdersController < ApplicationController
   before_action :authenticate_user, except: [:show]
   before_action :set_visibility, except: [:show]
-  before_action :authenticate_admin!, except: [:index, :show]
-  before_action :set_work_orders_and_check_company, only: [:show, :destroy]
+  before_action :authenticate_admin!, except: [:index, :show, :accept, :refuse, :change_status]
+  before_action :set_work_order_and_check_company, only: [:accept, :refuse, :change_status]
+
 
   def index
   end
 
   def show
+    @work_order = WorkOrder.friendly.find(params[:id])
+
+    if current_user
+      @authenticated = current_user.transport_company == @work_order.transport_company
+    end
+
+    @work_order_routes = @work_order.work_order_routes.reverse()
+  end
+
+  def accept
+   if current_user && current_user.transport_company == @work_order.transport_company
+    redirect_to @work_order, notice:"Ordem de serviço foi aceita com sucesso!" if @work_order.aceita!
+   end
+  end
+
+  def refuse
+    if current_user && current_user.transport_company == @work_order.transport_company
+      redirect_to @work_order, notice:"Ordem de serviço foi recusada com sucesso!" if @work_order.recusada!
+   end
   end
 
   def destroy
+    @work_order = WorkOrder.friendly.find(params[:id])
+
     return redirect_to work_order_path(@work_order), alert:"Não é permitido alterar Ordens de serviço que seu estado não sejam 'pendente' ou 'recusada'" if !@work_order.pendente? && !@work_order.recusada?
 
       if @work_order.destroy
@@ -18,6 +40,7 @@ class WorkOrdersController < ApplicationController
         redirect_to work_orders_path
       else
         flash[:alert] = 'Algo deu errado'
+        render :show
       end
   end
 
@@ -76,7 +99,6 @@ class WorkOrdersController < ApplicationController
 
 
     @delivery_times = []
-#  Price.where(transport_company_id: TransportCompany.where(status: "active"))
 
     @budgets.each do |budget|
       @delivery_times << budget.transport_company.delivery_times.find_by("km_min <= ? AND km_max >= ?", @total_distance, @total_distance)
@@ -86,7 +108,7 @@ class WorkOrdersController < ApplicationController
 
   private
 
-  def set_work_orders_and_check_company
+  def set_work_order_and_check_company
     if current_user
       @work_order = WorkOrder.friendly.find(params[:id])
       return check_user_company()

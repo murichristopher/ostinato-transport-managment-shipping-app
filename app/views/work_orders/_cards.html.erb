@@ -2,27 +2,9 @@
 <div class="col-lg-3 c-line<%= index %>">
   <div class="card mb-3" >
 
-  <% if work_order.pendente? %>
-    <div class="card-header bg-warning text-white">
-      Pendente
+    <div class="card-header text-white <%= work_order.status %>">
+      <%= work_order.status.tr('_', ' ').capitalize %>
     </div>
-  <% elsif work_order.aceita? %>
-    <div class="card-header bg-primary text-white">
-      Aceita
-    </div>
-  <% elsif work_order.recusada? %>
-    <div class="card-header bg-danger text-white">
-      Recusada
-    </div>
-  <% elsif work_order.em_transporte? %>
-    <div class="card-header bg-info text-white">
-      Em transporte
-    </div>
-  <% elsif work_order.recebida? %>
-    <div class="card-header bg-success text-white">
-      Recebida
-    </div>
-  <%end %>
 
     <div class="card-body">
       <h3 class="card-title fs-3"><%= link_to work_order.unique_code, work_order %></h3>

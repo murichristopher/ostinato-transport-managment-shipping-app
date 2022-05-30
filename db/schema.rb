@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_29_032258) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_30_031755) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -102,6 +102,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_29_032258) do
     t.index ["transport_company_id"], name: "index_users_on_transport_company_id"
   end
 
+  create_table "work_order_routes", force: :cascade do |t|
+    t.date "date"
+    t.string "last_location"
+    t.string "next_location"
+    t.integer "work_order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.integer "elapsed_time"
+    t.index ["work_order_id"], name: "index_work_order_routes_on_work_order_id"
+  end
+
   create_table "work_orders", force: :cascade do |t|
     t.string "sender_address"
     t.string "receiver_address"
@@ -118,6 +130,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_29_032258) do
     t.integer "status", default: 1
     t.integer "total_distance"
     t.string "slug"
+    t.integer "carrier_vehicle_id"
+    t.index ["carrier_vehicle_id"], name: "index_work_orders_on_carrier_vehicle_id"
     t.index ["slug"], name: "index_work_orders_on_slug", unique: true
     t.index ["transport_company_id"], name: "index_work_orders_on_transport_company_id"
   end
@@ -126,5 +140,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_29_032258) do
   add_foreign_key "delivery_times", "transport_companies"
   add_foreign_key "prices", "transport_companies"
   add_foreign_key "users", "transport_companies"
+  add_foreign_key "work_order_routes", "work_orders"
+  add_foreign_key "work_orders", "carrier_vehicles"
   add_foreign_key "work_orders", "transport_companies"
 end

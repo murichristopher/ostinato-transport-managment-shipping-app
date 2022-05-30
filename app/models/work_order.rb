@@ -1,13 +1,15 @@
 class WorkOrder < ApplicationRecord
   extend FriendlyId
-  friendly_id :unique_code, use: :slugged
+  friendly_id :slugging, use: [:slugged, :history, :finders]
 
   belongs_to :transport_company
-  belongs_to :carrier_vehicle, optional: true
 
   before_create :calc_delivery_time
   before_create :calc_total_price
   before_create :generate_unique_code
+
+  has_many :work_order_routes
+  has_one :carrier_vehicle
 
   enum status: { pendente: 1, aceita: 2, recusada: 3, em_transporte: 4, recebida: 5}
 
@@ -19,15 +21,6 @@ class WorkOrder < ApplicationRecord
 
   #custom validations
   validate :check_transport_company
-
-
-  def consulta
-    @prices = Price.where("cubic_meters_min <= ? AND cubic_meters_max >= ? AND weight_min <= ? AND weight_max >= ?", cubic_size, cubic_size, total_weight, total_weight)
-  end
-
-  def consulta_prazo(target)
-    DeliveryTime.where(transport_company: target.transport_company_id).where("km_min <= ? AND km_max >= ?", total_distance, total_distance)
-  end
 
   private
 

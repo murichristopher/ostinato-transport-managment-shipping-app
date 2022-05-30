@@ -9,6 +9,7 @@
         price: "Preço"
         delivery_time: "Prazo de Envio"
         work_order: "Ordem de Serviço"
+        work_order_route: Atualização de Rota
       attributes:
         warehouse:
           name: "Nome"
@@ -59,8 +60,6 @@
           km_max: "Quilômetros Máximo"
           time: "Prazo"
         work_order:
-          statuses:
-            pending: "pendente"
           sender_address: "Endereço do Remetente"
           receiver_address: "Endereço do Destinatário"
           receiver_name: "Nome do Destinatário"
@@ -74,5 +73,8 @@
           transport_company: "Transportadora"
           total_distance: "Distância Total"
           status: "Situação"
-
-
+        work_order_route:
+          date: "Data"
+          last_location: "Ultima localização"
+          next_location: "Próxima localização"
+          title: "Título"

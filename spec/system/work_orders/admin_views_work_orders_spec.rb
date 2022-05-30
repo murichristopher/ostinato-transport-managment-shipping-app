@@ -55,6 +55,17 @@ describe 'Admin visualiza ordens de serviço' do
       expect(page).to have_content("Transportadora: TEDEX")
       expect(page).to have_content("Tempo Estimado de Envio: X")
     end
-
   end
+
+  it 'sem nenhuma cadastrda' do
+    admin = Admin.create!(email:"joao@sistemadefrete.com.br", password:"123456")
+    login_as(admin, scope: :admin)
+
+    visit(root_path)
+
+    click_on("Ordens de serviço")
+
+    expect(page).to have_content("Nenhuma Ordem de serviço cadastrada")
+  end
+
 end

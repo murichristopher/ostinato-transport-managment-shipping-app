@@ -72,22 +72,6 @@ RSpec.describe CarrierVehicle, type: :model do
       end
     end
 
-    context 'uniqueness: ' do
-      it "false when 'license_plate' is not unique" do
-        transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "34028316000103", full_address: "Rua dos Andares, 294")
-
-        first_carrier_vehicle =  CarrierVehicle.create!(license_plate: "JUX1451", brand: "Renault", model: "Minibus", year: "2009", maximum_load_capacity: 200, transport_company: transport_company)
-
-        second_carrier_vehicle = CarrierVehicle.new(license_plate: "JUX1451")
-
-        second_carrier_vehicle.valid?
-
-        res = second_carrier_vehicle.errors[:license_plate]
-
-        expect(res).to include("já está em uso")
-      end
-    end
-
     context "format: " do
       it "false when 'license_plate' is in invalid format" do
         carrier_vehicle = CarrierVehicle.new(license_plate: 'ABDOP')

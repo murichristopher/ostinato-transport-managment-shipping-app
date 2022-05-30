@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :carrier_vehicles
     resources :prices
     resources :delivery_times
+    resources :work_order_routes, only: [:index, :show, :new, :create, :destroy]
   end
 
   resources :transport_companies do
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :work_orders do
+  resources :work_orders, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     member do
       get :new_directly_assign
     end
@@ -37,12 +38,16 @@ Rails.application.routes.draw do
       get :budget
       get :new_budget
     end
+    member do
+      patch :accept
+      patch :refuse
+    end
   end
+
 
 
   # resources :transport_companies, only: [:index, :show, :new, :create, :edit, :update]
   # resources :carrier_vehicles, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  resources :work_orders, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   # resources :prices, param: :slug
   # resources :delivery_times, param: :slug
