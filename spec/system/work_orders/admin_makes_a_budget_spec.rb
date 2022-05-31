@@ -35,7 +35,9 @@ describe 'Admin faz orçamento de preços' do
 
     visit(root_path)
 
-    click_on("Fazer orçamento")
+    within(".navigation") do
+      click_on("Fazer orçamento")
+    end
 
     fill_in "Metros Cúbicos",	with: 1
     fill_in "Peso Total",	with: 30
@@ -62,7 +64,7 @@ describe 'Admin faz orçamento de preços' do
   end
 
   it 'sem nenhuma transportadora á suprir os requisitos' do
-transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "34028316000103", full_address: "Rua dos Andares, 294")
+    transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name: "SEDEX DISTRIBUICOES LTDA", domain: "sedex.com.br", registration_number: "34028316000103", full_address: "Rua dos Andares, 294")
     second_transport_company = TransportCompany.create!(trading_name: "TEDEX", company_name: "TEDEX DISTRIBUICOES LTDA", domain: "tedex.com.br", registration_number: "12028316000103", full_address: "Rua dos Andares, 294")
     third_transport_company = TransportCompany.create!(trading_name: "REDEX", company_name: "REDEX DISTRIBUICOES LTDA", domain: "redex.com.br", registration_number: "12028316000123", full_address: "Rua dos Andares, 294")
 
@@ -78,8 +80,10 @@ transport_company = TransportCompany.create!(trading_name: "SEDEX", company_name
 
     visit(root_path)
 
-    click_on("Fazer orçamento")
-
+    within(".navigation") do
+      click_on("Fazer orçamento")
+    end
+    
     fill_in "Metros Cúbicos",	with: 1123
     fill_in "Peso Total",	with: 301
     fill_in "Distância Total",	with: 60123

@@ -36,7 +36,5 @@ describe 'Usuário aceita uma ordem de serviço' do
     expect(page).to have_content("recusada")
     expect(page).not_to have_content("Registrar Atualização de rota")
 
-
-
   end
 end

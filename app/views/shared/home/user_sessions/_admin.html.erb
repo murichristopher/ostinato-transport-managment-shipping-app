@@ -1,11 +1,22 @@
 <div class="navigation-area d-flex justify-content-between align-items-center">
   <h1 class="mb-2">Olá, admin!</h1>
-  <%= button_to "Pedir orçamento", new_transport_company_path, {method: :get, class: "btn btn-outline-warning"} %>
+  <div class="navigation d-flex gap-2">
+  <%= button_to "Fazer orçamento", new_budget_work_orders_path, {method: :get, class: "btn btn-outline-warning"} %>
+  <%= link_to "Consultar Ordem de Serviço", search_work_orders_path, class:"btn btn-outline-success" %>
+  </div>
 </div>
 <hr>
 
 <div class="row scroll admin-dash ">
 
+<div class="col-lg-4 mb-3">
+<div class="card text-center" >
+  <img src="https://img.icons8.com/color/280/000000/truck.png" class="card-img-top">
+  <div class="card-body">
+    <%= link_to "Cadastrar transportadora", new_transport_company_path, class:"btn btn-outline-success" %>
+  </div>
+</div>
+</div>
 
 <div class="col-lg-4 mb-3">
 <div class="card text-center" >
@@ -38,12 +49,4 @@
 
 
 
-<div class="col-lg-4 mb-3">
-<div class="card text-center" >
-  <img src="https://img.icons8.com/color/280/000000/truck.png" class="card-img-top" alt="...">
-  <div class="card-body">
-    <%= link_to "Ver fornecedores", root_path, class:"btn btn-outline-success" %>
-  </div>
-</div>
-</div>
-</div>
+

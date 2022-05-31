@@ -4,6 +4,8 @@
     <div class="navigation d-flex gap-2">
       <%# <%= button_to "Cadastrar Nova Ordem", new_work_order_path, {method: :get, class: "btn btn-outline-success"} %>
       <%= render 'budget_modal'%>
+      <%= link_to "Consultar Ordem de Serviço", search_work_orders_path, class:"btn btn-outline-success" %>
+
     </div>
   <% end %>
 

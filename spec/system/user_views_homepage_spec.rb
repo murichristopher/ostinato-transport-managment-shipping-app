@@ -85,7 +85,7 @@ describe 'Usuário visualiza página inicial' do
 
     within(".container") do
       expect(page).to have_content("Ver transportadoras")
-      expect(page).to have_content("Pedir orçamento")
+      expect(page).to have_content("Fazer orçamento")
       expect(page).not_to have_content("Cadastrar veículos")
       expect(page).not_to have_content("Atualizar preços")
     end

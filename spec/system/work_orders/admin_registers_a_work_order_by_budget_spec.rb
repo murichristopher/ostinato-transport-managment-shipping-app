@@ -22,7 +22,9 @@ describe 'Admin registra uma ordem de serviço' do
 
     visit(root_path)
 
-    click_on("Fazer orçamento")
+    within(".navigation") do
+      click_on("Fazer orçamento")
+    end
 
     fill_in "Metros Cúbicos",	with: 1
     fill_in "Peso Total",	with: 30
@@ -79,7 +81,9 @@ describe 'Admin registra uma ordem de serviço' do
 
     visit(root_path)
 
-    click_on("Fazer orçamento")
+    within(".navigation") do
+      click_on("Fazer orçamento")
+    end
 
     fill_in "Metros Cúbicos",	with: 1
     fill_in "Peso Total",	with: 30

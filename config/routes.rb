@@ -22,23 +22,18 @@ Rails.application.routes.draw do
   end
 
   resources :work_orders, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-    member do
-      get :new_directly_assign
-    end
-    member do
-      post :create_directly_assign
-    end
-    member do
-      get :new_budget_assign
-    end
-    member do
-      post :create_budget_assign
-    end
     collection do
       get :budget
       get :new_budget
+      get :search
+      post :handle_search
     end
     member do
+      get :new_directly_assign
+      post :create_directly_assign
+      get :new_budget_assign
+      post :create_budget_assign
+      post :handle_search
       patch :accept
       patch :refuse
     end

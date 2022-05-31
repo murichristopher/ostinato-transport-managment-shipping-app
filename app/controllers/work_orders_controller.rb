@@ -1,9 +1,24 @@
 class WorkOrdersController < ApplicationController
-  before_action :authenticate_user, except: [:show]
-  before_action :set_visibility, except: [:show]
-  before_action :authenticate_admin!, except: [:index, :show, :accept, :refuse, :change_status]
+  before_action :authenticate_user, except: [:show, :search, :handle_search]
+  before_action :set_visibility, except: [:show, :search, :handle_search]
+  before_action :authenticate_admin!, except: [:index, :show, :accept, :refuse, :change_status, :search, :handle_search]
   before_action :set_work_order_and_check_company, only: [:accept, :refuse, :change_status]
 
+  def search
+  end
+
+  def handle_search
+    parametro = params[:work_order][:unique_code]
+    @work_order = WorkOrder.find_by(unique_code: parametro.upcase)
+
+    if @work_order.present?
+     redirect_to @work_order, notice:"Sua busca foi encontrada!"
+    else
+      @errors = "Não foi encontrado!"
+      render :search, notice:"Não foi possivel encontrar um Ordem de serviço com este código"
+    end
+
+  end
 
   def index
   end
