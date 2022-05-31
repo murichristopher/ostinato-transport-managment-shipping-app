@@ -52,6 +52,9 @@ class WorkOrdersController < ApplicationController
 
     return redirect_to work_order_path(@work_order), alert:"Não é permitido alterar Ordens de serviço que seu estado não sejam 'pendente' ou 'recusada'" if !@work_order.pendente? && !@work_order.recusada?
 
+    @work_order.transport_company = nil
+    @work_order.carrier_vehicle = nil
+
       if @work_order.destroy
         flash[:notice] = 'Ordem de serviço deletada com sucesso!'
         redirect_to work_orders_path
@@ -123,7 +126,11 @@ class WorkOrdersController < ApplicationController
       delivery_time = budget.transport_company.delivery_times.find_by("km_min <= ? AND km_max >= ?", @total_distance, @total_distance)
 
 
-      log = BudgetLog.new(transport_company: budget.transport_company, cubic_size: params[:work_order][:cubic_size], total_weight: params[:work_order][:total_weight], total_distance: params[:work_order][:total_distance], delivery_time: delivery_time.time)
+      log = BudgetLog.new(transport_company: budget.transport_company, cubic_size: params[:work_order][:cubic_size], total_weight: params[:work_order][:total_weight], total_distance: params[:work_order][:total_distance])
+
+      if delivery_time.present?
+        log.delivery_time = delivery_time.time
+      end
 
       log.total_price = log.total_distance * budget.value_per_km
       log.save!
