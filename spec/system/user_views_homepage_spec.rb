@@ -37,7 +37,7 @@ describe 'Usuário visualiza página inicial' do
     within(".container") do
       expect(page).to have_content("Olá")
       expect(page).to have_content("Consultar Ordem de Serviço")
-      expect(page).to have_content("Cadastrar veículos")
+      expect(page).to have_content("Cadastrar veículo")
       expect(page).to have_content("Atualizar preços")
       expect(page).to have_content("Ver veículos")
       expect(page).to_not have_content("Ver transportadoras")
@@ -62,7 +62,7 @@ describe 'Usuário visualiza página inicial' do
     within(".container") do
       expect(page).to have_content("Olá")
       expect(page).to have_content("Consultar Ordem de Serviço")
-      expect(page).not_to have_content("Cadastrar veículos")
+      expect(page).not_to have_content("Cadastrar veículo")
       expect(page).not_to have_content("Atualizar preços")
       expect(page).not_to have_content("Ver veículos")
     end
@@ -86,7 +86,7 @@ describe 'Usuário visualiza página inicial' do
     within(".container") do
       expect(page).to have_content("Ver transportadoras")
       expect(page).to have_content("Fazer orçamento")
-      expect(page).not_to have_content("Cadastrar veículos")
+      expect(page).not_to have_content("Cadastrar veículo")
       expect(page).not_to have_content("Atualizar preços")
     end
   end

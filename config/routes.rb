@@ -5,17 +5,17 @@ Rails.application.routes.draw do
   root "home#index"
 
   authenticate :admin do
-    resources :transport_companies
+    resources :transport_companies, only: [:index, :show, :new, :create, :destroy, :update, :edit]
   end
 
   authenticate :user do
-    resources :carrier_vehicles
-    resources :prices
-    resources :delivery_times
-    resources :work_order_routes, only: [:index, :show, :new, :create, :destroy]
+    resources :carrier_vehicles, only: [:index, :show, :new, :create, :destroy, :update, :edit]
+    resources :prices, only: [:index, :show, :new, :create, :destroy, :update, :edit]
+    resources :delivery_times, only: [:index, :show, :new, :create, :destroy, :update, :edit]
+    resources :work_order_routes, only: [:index, :show, :new, :create, :destroy, :edit]
   end
 
-  resources :transport_companies do
+  resources :transport_companies, only: [:index, :show, :new, :create, :destroy, :update, :edit] do
     member do
       patch :toggle_status
     end

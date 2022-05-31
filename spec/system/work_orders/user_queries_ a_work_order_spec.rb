@@ -20,8 +20,9 @@ describe 'Usuário consulta uma ordem de serviço' do
 
     visit(root_path)
 
+    within(".navigation") do
     click_on("Consultar Ordem de Serviço")
-
+    end
     fill_in "Código",	with: "#ANS82HJCBAS"
 
     click_on("Consultar")
