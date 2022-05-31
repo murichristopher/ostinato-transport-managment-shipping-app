@@ -44,3 +44,15 @@
 <% else %>
   <p>Nenhum prazo de envio cadastrado</p>
 <% end %>
+
+<h2 class="mt-5">Últimos orçamentos</p>
+<hr>
+<% if @budgets.any?%>
+<%= render 'shared/budgets/cards'%>
+<% else %>
+  <p>Nenhum orçamento prévio cadastrado</p>
+<% end %>
+
+
+
+

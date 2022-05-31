@@ -26,6 +26,7 @@ class TransportCompaniesController < ApplicationController
   def show
     @prices = @transport_company.prices
     @delivery_times = @transport_company.delivery_times
+    @budgets = @transport_company.budget_logs.last(8).reverse()
   end
 
   def toggle_status

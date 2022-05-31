@@ -115,11 +115,23 @@ class WorkOrdersController < ApplicationController
     @budgets = Price.where("cubic_meters_min <= ? AND cubic_meters_max >= ? AND weight_min <= ? AND weight_max >= ?", params[:work_order][:cubic_size], params[:work_order][:cubic_size], params[:work_order][:total_weight], params[:work_order][:total_weight]).group(:transport_company_id).where(transport_company_id: TransportCompany.where(status: "active"))
 
 
+
+
     @delivery_times = []
 
     @budgets.each do |budget|
-      @delivery_times << budget.transport_company.delivery_times.find_by("km_min <= ? AND km_max >= ?", @total_distance, @total_distance)
+      delivery_time = budget.transport_company.delivery_times.find_by("km_min <= ? AND km_max >= ?", @total_distance, @total_distance)
+
+
+      log = BudgetLog.new(transport_company: budget.transport_company, cubic_size: params[:work_order][:cubic_size], total_weight: params[:work_order][:total_weight], total_distance: params[:work_order][:total_distance], delivery_time: delivery_time.time)
+
+      log.total_price = log.total_distance * budget.value_per_km
+      log.save!
+
+      @delivery_times << delivery_time
     end
+
+
 
   end
 
