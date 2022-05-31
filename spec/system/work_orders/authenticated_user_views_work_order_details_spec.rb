@@ -33,7 +33,7 @@ describe 'User autenticado visualiza detalhes de uma ordem de serviço de sua tr
     expect(page).to have_content("Prazo Estimado de Envio 2 dias úteis")
     expect(page).to have_content("Frete R$ 9,75")
     expect(page).to have_content("Metros Cúbicos 0.3m³")
-    expect(page).to have_content("Distância Total 3km")
+    expect(page).to have_content("Distância Total 3.0km")
 
     within(".navigation-area") do
       expect(page).not_to have_content("Deletar")

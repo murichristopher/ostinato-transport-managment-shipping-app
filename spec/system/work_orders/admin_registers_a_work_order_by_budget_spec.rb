@@ -57,7 +57,7 @@ describe 'Admin registra uma ordem de serviço' do
     expect(page).to have_content("Frete R$ 435,00")
     expect(page).to have_content("Metros Cúbicos 1.0m³")
     expect(page).to have_content("Peso Total 30.0kg")
-    expect(page).to have_content("Distância Total 60km")
+    expect(page).to have_content("Distância Total 60.0km")
   end
 
   it 'com dados incompletos ou inválidos' do

@@ -113,7 +113,7 @@ class WorkOrdersController < ApplicationController
       return redirect_to root_path
     end
 
-    @total_distance = params[:work_order][:total_distance].to_i
+    @total_distance = params[:work_order][:total_distance].to_d
 
     @budgets = Price.where("cubic_meters_min <= ? AND cubic_meters_max >= ? AND weight_min <= ? AND weight_max >= ?", params[:work_order][:cubic_size], params[:work_order][:cubic_size], params[:work_order][:total_weight], params[:work_order][:total_weight]).group(:transport_company_id).where(transport_company_id: TransportCompany.where(status: "active"))
 

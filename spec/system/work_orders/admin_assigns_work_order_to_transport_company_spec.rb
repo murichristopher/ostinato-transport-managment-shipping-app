@@ -42,7 +42,7 @@ describe 'Admin atribui uma Ordem de serviço á uma Transportadora' do
     expect(page).to have_content("Frete R$ 21,75")
     expect(page).to have_content("Metros Cúbicos 1.2m³")
     expect(page).to have_content("Peso Total 33.0kg")
-    expect(page).to have_content("Distância Total 3km")
+    expect(page).to have_content("Distância Total 3.0km")
   end
 
   it 'com dados inválidos ou incompletos' do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_31_044506) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_31_204128) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -74,6 +74,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_31_044506) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "minimal_prices", force: :cascade do |t|
+    t.integer "max_distance"
+    t.integer "transport_company_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "price"
+    t.index ["transport_company_id"], name: "index_minimal_prices_on_transport_company_id"
   end
 
   create_table "prices", force: :cascade do |t|
@@ -146,8 +155,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_31_044506) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 1
-    t.integer "total_distance"
+    t.decimal "total_distance"
     t.string "slug"
+    t.string "title"
     t.index ["slug"], name: "index_work_orders_on_slug", unique: true
     t.index ["transport_company_id"], name: "index_work_orders_on_transport_company_id"
   end
@@ -157,6 +167,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_31_044506) do
   add_foreign_key "carrier_vehicles", "work_order_routes"
   add_foreign_key "carrier_vehicles", "work_orders"
   add_foreign_key "delivery_times", "transport_companies"
+  add_foreign_key "minimal_prices", "transport_companies"
   add_foreign_key "prices", "transport_companies"
   add_foreign_key "users", "transport_companies"
   add_foreign_key "work_order_routes", "carrier_vehicles"
