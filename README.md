@@ -42,7 +42,4 @@ Funcionalidades
   rails server
   ```
 
-# Andamento do Projeto
-[github.com/murichristopher](https://github.com/)# README
-
 
