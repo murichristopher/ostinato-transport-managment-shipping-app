@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+        :rememberable, :validatable
 
   enum user_type: { guest: 0, linked: 1 }
 
