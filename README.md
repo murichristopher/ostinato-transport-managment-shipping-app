@@ -41,5 +41,7 @@ Funcionalidades
   ```
   rails server
   ```
-
+## Instruções básicas para acesso
+- Usuário Admin: email: admin@admin.com, senha: 123456
+- Usuário da Transportadora: rodrigo@sedex.com.br, senha: 123456
 
