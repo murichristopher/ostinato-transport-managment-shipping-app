@@ -17,6 +17,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run script file
       run: |
-         chmod +x "${GITHUB_WORKSPACE}/.github/script.sh"
-         "${GITHUB_WORKSPACE}/.github/script.sh"
+         chmod +x "${GITHUB_WORKSPACE}/script.sh"
+         "${GITHUB_WORKSPACE}/script.sh"
       shell: bash
