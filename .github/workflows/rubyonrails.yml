@@ -17,8 +17,8 @@ jobs:
           bundler-cache: true
       - name: Run script file
         run: |
-          chmod +x "${GITHUB_WORKSPACE}/script.sh"
-          "${GITHUB_WORKSPACE}/script.sh"
+          chmod +x "${GITHUB_WORKSPACE}/script2.sh"
+          "${GITHUB_WORKSPACE}/script2.sh"
         shell: bash
       - name: Commit files
         run: |
