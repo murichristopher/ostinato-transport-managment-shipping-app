@@ -22,8 +22,6 @@ jobs:
         uses: ruby/setup-ruby@8f312efe1262fb463d906e9bf040319394c18d3e # v1.92
         with:
           bundler-cache: true
-      - name: Security audit dependencies
-        run: bundle exec bundle-audit --update
       - name: Run script file
         run: |
          chmod +x "${GITHUB_WORKSPACE}/script.sh"
