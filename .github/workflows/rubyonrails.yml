@@ -35,8 +35,8 @@ jobs:
         run: git add .
       - name: commit changed files
         run: |
-        git config --local user.name "bot"
-        git commit -m "Auto lint files"
+          git config --local user.name "bot"
+          git commit -m "Auto lint files"
       - name: fetch from main
         run: git fetch origin main
       - name: Push changes # push the output folder to your repo
