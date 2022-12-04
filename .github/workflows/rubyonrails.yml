@@ -27,4 +27,3 @@ jobs:
          chmod +x "${GITHUB_WORKSPACE}/script.sh"
          "${GITHUB_WORKSPACE}/script.sh"
         shell: bash
-        auto_fix: ${{ github.event_name == 'pull_request' }}
