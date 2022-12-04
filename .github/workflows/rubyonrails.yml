@@ -46,7 +46,9 @@ jobs:
       - name: Push changes # push the output folder to your repo
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: git push origin $(git branch | grep '*' | cut -b3-)
+        run: |
+          git branch | grep '*' | cut -b3-
+          git push origin $(git branch | grep '*' | cut -b3-)
 
 
 
