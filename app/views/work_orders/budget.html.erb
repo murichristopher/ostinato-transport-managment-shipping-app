@@ -1,46 +1,40 @@
 <div class="navigation-area d-flex justify-content-between align-items-center">
   <h2 class="mb-2">Transportadoras disponíveis: <%= @budgets.length %> </h2>
-
   <div class="navigation d-flex gap-2">
-  <%= button_to "Fazer nova consulta", new_budget_work_orders_path, {method: :get, class: "btn btn-outline-success"} %>
-  <%= button_to "Voltar", work_orders_path, {method: :get, class: "btn btn-outline-danger"} %>
+    <%= button_to "Fazer nova consulta", new_budget_work_orders_path, {method: :get, class: "btn btn-outline-success"} %>
+    <%= button_to "Voltar", work_orders_path, {method: :get, class: "btn btn-outline-danger"} %>
   </div>
 </div>
 <hr>
-
-
 <div class="row scroll">
-<% @budgets.each_with_index do |budget, index| %>
-<div class="col-lg-3 b-line<%= index %>">
-  <div class="card mb-3" >
-    <div class="card-body">
-      <h3 class="card-title fs-2"><%= link_to budget.transport_company.trading_name, transport_company_path(budget.transport_company) %></h3>
-      <ul class="list-group list-group-flush">
-      <li class="list-group-item"><%= budget.transport_company.company_name%></li>
-    <li class="list-group-item">Valor: <%= number_to_currency(budget.value_per_km * @total_distance)  %></li>
-      <li class="list-group-item">Tempo Estimado de Envio:
-        <% if @delivery_times[index].present? %>
-          <%= @delivery_times[index].time %> dias úteis
-        <% else %>
-          não definido
+  <% @budgets.each_with_index do |budget, index| %>
+    <div class="col-lg-3 b-line<%= index %>">
+      <div class="card mb-3" >
+        <div class="card-body">
+          <h3 class="card-title fs-2"><%= link_to budget.transport_company.trading_name, transport_company_path(budget.transport_company) %></h3>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><%= budget.transport_company.company_name%></li>
+            <li class="list-group-item">Valor: <%= number_to_currency(budget.value_per_km * @total_distance)  %></li>
+            <li class="list-group-item">Tempo Estimado de Envio:
+              <% if @delivery_times[index].present? %>
+                <%= @delivery_times[index].time %> dias úteis
+              <% else %>
+                não definido
+              <% end %>
+            </li>
+          </li>
+        </ul>
+        <%= form_with(model: WorkOrder.new, url: new_budget_assign_work_order_path(budget.transport_company), method: :get) do |f| %>
+          <%= f.hidden_field :cubic_size, value: params[:work_order][:cubic_size] %>
+          <%= f.hidden_field :total_weight, value: params[:work_order][:total_weight] %>
+          <%= f.hidden_field :total_distance, value: params[:work_order][:total_distance] %>
+          <%= f.submit "Cadastrar Ordem de Serviço", class: "btn btn-success mt-2" %>
         <% end %>
-      </li>
-  </li>
-    </ul>
-      <%= form_with(model: WorkOrder.new, url: new_budget_assign_work_order_path(budget.transport_company), method: :get) do |f| %>
-        <%= f.hidden_field :cubic_size, value: params[:work_order][:cubic_size] %>
-        <%= f.hidden_field :total_weight, value: params[:work_order][:total_weight] %>
-        <%= f.hidden_field :total_distance, value: params[:work_order][:total_distance] %>
-        <%= f.submit "Cadastrar Ordem de Serviço", class: "btn btn-success mt-2" %>
-      <% end %>
-
+      </div>
     </div>
   </div>
-  </div>
-
 <% end %>
 </div>
-
 <% if @budgets.empty? %>
   <p>Nenhuma transportadora possui preços com os requisitos informados.</p>
 <% end %>

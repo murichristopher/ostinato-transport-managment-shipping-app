@@ -3,10 +3,8 @@
   <%= button_to "Cadastrar novo preço", new_price_path, {method: :get, class: "btn btn-outline-success"} %>
 </div>
 <hr>
-
 <% if @prices.any? %>
   <%= render 'shared/prices/table'%>
 <% else %>
   <p>Nenhuma tabela de preços cadastrada</p>
 <% end %>
-
