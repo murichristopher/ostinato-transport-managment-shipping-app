@@ -1,5 +1,4 @@
 <h2>Preencha os dados para prosseguir: </h2>
-
 <%= render 'shared/form/errors'%>
 <%= form_for @work_order,:url => url_for(:controller => 'work_orders', :action => 'create_budget_assign') do |f| %>
   <div class="row mb-2">
@@ -26,11 +25,8 @@
       <%= f.text_field :receiver_cpf, class:"form-control", placeholder:"" %>
     </div>
   </div>
-
   <%= f.hidden_field :cubic_size , value: params[:work_order][:cubic_size]%>
   <%= f.hidden_field :total_weight , value: params[:work_order][:total_weight]%>
   <%= f.hidden_field :total_distance , value: params[:work_order][:total_distance]%>
-
   <%= f.submit 'Salvar', class:"btn btn-primary fs-5", name: "transport_company_id" %>
-
 <% end %>

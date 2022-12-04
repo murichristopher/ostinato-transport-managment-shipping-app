@@ -1,42 +1,34 @@
 <div class="navigation-area d-flex justify-content-between align-items-center">
-
-<div class="d-flex justify-content-center align-items-center gap-2 ">
-<h2 class="mb-3"><%= @transport_company.company_name %></h2>
-  <% if @transport_company.active? %>
-    <p class="alert alert-success">ATIVO</p>
-  <% else %>
+  <div class="d-flex justify-content-center align-items-center gap-2 ">
+    <h2 class="mb-3"><%= @transport_company.company_name %></h2>
+    <% if @transport_company.active? %>
+      <p class="alert alert-success">ATIVO</p>
+    <% else %>
       <p class="alert alert-danger">INATIVO</p>
-  <% end %>
-</div>
-
-<div class="navigation d-flex gap-2">
-     <%= button_to "Editar", edit_transport_company_path, {method: :get, class: "btn btn-outline-warning"} %>
-
+    <% end %>
+  </div>
+  <div class="navigation d-flex gap-2">
+    <%= button_to "Editar", edit_transport_company_path, {method: :get, class: "btn btn-outline-warning"} %>
     <% if @transport_company.active? %>
       <%= button_to "Desativar", toggle_status_transport_company_path, {method: :patch, class: "btn btn-outline-danger"} %>
       <%= button_to "Cadastrar Ordem de Serviço", new_directly_assign_work_order_path, {method: :get, class: "btn btn-outline-danger"} %>
     <% else %>
       <%= button_to "Ativar", toggle_status_transport_company_path, {method: :patch, class: "btn btn-outline-success"} %>
     <% end %>
-     <%= button_to "Voltar para a lista", transport_companies_path, {method: :get, class: "btn btn-outline-danger"} %>
+    <%= button_to "Voltar para a lista", transport_companies_path, {method: :get, class: "btn btn-outline-danger"} %>
   </div>
 </div>
 <hr>
-
-
 <div class="row scroll">
-<%= render 'attributes'%>
+  <%= render 'attributes'%>
 </div>
-
 <h2 class="mt-5">Tabela de preços</h2>
 <hr>
-
 <% if @prices.any?%>
   <%= render 'shared/prices/table'%>
 <% else %>
   <p>Nenhuma tabela de preços cadastrada</p>
 <% end %>
-
 <h2 class="mt-5">Prazos de envio</h2>
 <hr>
 <% if @delivery_times.any? %>
@@ -44,15 +36,10 @@
 <% else %>
   <p>Nenhum prazo de envio cadastrado</p>
 <% end %>
-
 <h2 class="mt-5">Últimos orçamentos</p>
 <hr>
 <% if @budgets.any?%>
-<%= render 'shared/budgets/cards'%>
+  <%= render 'shared/budgets/cards'%>
 <% else %>
   <p class="fs-5">Nenhum orçamento prévio cadastrado</p>
 <% end %>
-
-
-
-

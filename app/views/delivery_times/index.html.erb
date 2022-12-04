@@ -3,10 +3,8 @@
   <%= button_to "Cadastrar novo prazo", new_delivery_time_path, {method: :get, class: "btn btn-outline-success"} %>
 </div>
 <hr>
-
 <% if @delivery_times.any? %>
   <%= render 'shared/delivery_times/table'%>
 <% else %>
   <p>Nenhum prazo de envio cadastrado</p>
 <% end %>
-
