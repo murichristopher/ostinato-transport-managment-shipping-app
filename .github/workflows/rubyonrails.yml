@@ -24,6 +24,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+          git restore script2.sh
           git add -u
 
           if ! git diff-index --quiet HEAD; then
