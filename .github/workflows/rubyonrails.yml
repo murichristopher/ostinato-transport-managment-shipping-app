@@ -15,8 +15,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
-    - working-directory: ./public
     - name: Run script file
       run: |
-         ./test.sh
+         ./public/test.sh
       shell: bash
