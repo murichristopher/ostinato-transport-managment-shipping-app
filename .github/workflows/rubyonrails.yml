@@ -36,7 +36,6 @@ jobs:
       - name: check for changes
         run: |
           git restore vendor
-          git checkout Gemfile.lock
           git status
       - name: stage changed files
         run: git add .
