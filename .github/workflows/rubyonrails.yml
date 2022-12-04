@@ -31,8 +31,6 @@ jobs:
          chmod +x "${GITHUB_WORKSPACE}/script.sh"
          "${GITHUB_WORKSPACE}/script.sh"
         shell: bash
-      - name: switching from HTTPS to SSH
-        run: git remote set-url origin ${{ secrets.ssh }}
       - name: check for changes
         run: |
           git restore vendor
