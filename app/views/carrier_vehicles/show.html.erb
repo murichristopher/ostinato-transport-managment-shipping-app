@@ -1,22 +1,12 @@
-
 <div class="navigation-area d-flex justify-content-between align-items-center">
-
   <div class="d-flex justify-content-center align-items-center gap-2 ">
     <h2 class="mb-3"><%= @carrier_vehicle.full_description %></h2>
-
   </div>
   <div class="navigation d-flex gap-2">
-      <%= button_to "Editar", edit_carrier_vehicle_path, {method: :get, class: "btn btn-outline-warning"} %>
-
-      <%= button_to "Deletar", carrier_vehicle_url, {method: :delete, class: "btn btn-outline-danger"} %>
-
-     <%= button_to "Voltar para a lista", carrier_vehicles_path , {method: :get, class: "btn btn-outline-danger"} %>
+    <%= button_to "Editar", edit_carrier_vehicle_path, {method: :get, class: "btn btn-outline-warning"} %>
+    <%= button_to "Deletar", carrier_vehicle_url, {method: :delete, class: "btn btn-outline-danger"} %>
+    <%= button_to "Voltar para a lista", carrier_vehicles_path , {method: :get, class: "btn btn-outline-danger"} %>
   </div>
 </div>
 <hr>
-
-
 <%= render 'attributes'%>
-
-
-

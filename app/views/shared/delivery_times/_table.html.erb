@@ -9,17 +9,15 @@
     </tr>
   </thead>
   <tbody>
-<% @delivery_times.each_with_index do |delivery_time, index| %>
-<tr class="t-line<%= index %>">
-      <th scope="row"><%= delivery_time.km_min %>km á <%= delivery_time.km_max %>km</th>
-      <td><%= delivery_time.time %> dias úteis</td>
-      <% if user_signed_in? %>
-        <td class="d-flex gap-2"><%= button_to "Editar", edit_delivery_time_path(delivery_time), {method: :get, class: "btn btn-warning"} %> <%= button_to "Deletar", delivery_time_path(delivery_time), {method: :delete, class: "btn btn-danger"} %></td>
-      <% end %>
-</tr>
-
-<% end %>
+    <% @delivery_times.each_with_index do |delivery_time, index| %>
+      <tr class="t-line<%= index %>">
+        <th scope="row"><%= delivery_time.km_min %>km á <%= delivery_time.km_max %>km</th>
+        <td><%= delivery_time.time %> dias úteis</td>
+        <% if user_signed_in? %>
+          <td class="d-flex gap-2"><%= button_to "Editar", edit_delivery_time_path(delivery_time), {method: :get, class: "btn btn-warning"} %> <%= button_to "Deletar", delivery_time_path(delivery_time), {method: :delete, class: "btn btn-danger"} %></td>
+        <% end %>
+      </tr>
+    <% end %>
   </tbody>
 </table >
-
 <p class="card-text mt-2 fs-6"><small class="text-muted">Atualizado em <%=  @delivery_times.last[:updated_at].strftime("%d/%m/%Y")  %></small></p>

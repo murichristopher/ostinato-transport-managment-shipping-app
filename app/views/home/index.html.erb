@@ -1,14 +1,10 @@
-
 <% if admin_signed_in? %>
   <%= render 'shared/home/user_sessions/admin'%>
-                                                            <% elsif user_signed_in? && current_user.linked? %>
+<% elsif user_signed_in? && current_user.linked? %>
   <%= render 'shared/home/user_sessions/user'%>
 <% else %>
   <%= render 'shared/home/user_sessions/guest'%>
 <% end %>
-
-
-
 <div>
   <h1>OASIODASIDASDIAS</h1>
-            </div>
+</div>

@@ -1,81 +1,69 @@
 <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Registrar Atualização de rota
 </button>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-
         <h4 class="modal-title" id="exampleModalLabel">Registrar Atualização de rota</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-    <div class="modal-body">
-
-     <div class="alert-warning p-3 mb-2">
-        <% if @work_order.carrier_vehicle.nil? %>
-          <p>Deverá ser atríbuida á um veículo</p>
-        <% end %>
+      <div class="modal-body">
+        <div class="alert-warning p-3 mb-2">
+          <% if @work_order.carrier_vehicle.nil? %>
+            <p>Deverá ser atríbuida á um veículo</p>
+          <% end %>
           <p>Deverá possuir um título</p>
           <p>Deverá possuir uma última localização</p>
           <p>A data não pode ser futura</p>
-      </div>
-
-      <%= form_with model: WorkOrderRoute.new, local: true, data: { turbo: false } do |f| %>
-
-      <% if @work_order.carrier_vehicle.nil? %>
+        </div>
+        <%= form_with model: WorkOrderRoute.new, local: true, data: { turbo: false } do |f| %>
+          <% if @work_order.carrier_vehicle.nil? %>
+            <div class="row mb-2">
+              <label class="col-sm-12 col-form-label">Veículos disponíveis</label>
+              <div class="col-sm-12 mb-2">
+                <%= collection_select(:carrier_vehicle, :id, @carrier_vehicles, :id, :model, {prompt: "Selecione um veículo"}, {class: "form-select"}) %>
+              </div>
+            </div>
+          <% end %>
           <div class="row mb-2">
-            <label class="col-sm-12 col-form-label">Veículos disponíveis</label>
-
+            <label class="col-sm-12 col-form-label">Status</label>
             <div class="col-sm-12 mb-2">
-              <%= collection_select(:carrier_vehicle, :id, @carrier_vehicles, :id, :model, {prompt: "Selecione um veículo"}, {class: "form-select"}) %>
+              <select name="status" id="cars", class="form-select">
+                <option value="em_transporte">Em transporte</option>
+                <option value="recebida">Recebida</option>
+              </select>
             </div>
           </div>
-        <% end %>
-
-      <div class="row mb-2">
-          <label class="col-sm-12 col-form-label">Status</label>
-
-          <div class="col-sm-12 mb-2">
-          <select name="status" id="cars", class="form-select">
-            <option value="em_transporte">Em transporte</option>
-            <option value="recebida">Recebida</option>
-          </select>
-          </div>
-      </div>
-
-        <div class="row mb-2">
-          <%= f.label :title, class:"col-sm-12 col-form-label"%>
+          <div class="row mb-2">
+            <%= f.label :title, class:"col-sm-12 col-form-label"%>
             <div class="col-sm-12 mb-2">
               <%= f.text_field :title, class:"form-control fs-6", placeholder:"Á CAMINHO DE UNIDADE DE TRATAMENTO" %>
             </div>
-        </div>
-
-        <div class="row mb-2">
-          <div class="col mb-2">
-            <%= f.label :date, class: "mb-2" %>
-              <%= f.date_select :date, {start_day: Date.today, start_month: Date.today.month, start_year: Date.today.year, order: [:day, :month, :year]}, {class: 'form-select'} %>
           </div>
-        </div>
-        <div class="row mb-2">
-          <%= f.label :last_location, class:"col-sm-12 col-form-label"%>
+          <div class="row mb-2">
+            <div class="col mb-2">
+              <%= f.label :date, class: "mb-2" %>
+              <%= f.date_select :date, {start_day: Date.today, start_month: Date.today.month, start_year: Date.today.year, order: [:day, :month, :year]}, {class: 'form-select'} %>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <%= f.label :last_location, class:"col-sm-12 col-form-label"%>
             <div class="col-sm-12 mb-2">
               <%= f.text_field :last_location, step:0.01, class:"form-control fs-5", placeholder:"Rua dos Felícios, nº 44" %>
             </div>
-        </div>
-        <div class="row mb-2">
-          <%= f.label :next_location, class:"col-sm-12 col-form-label"%>
-          <div class="col-sm-12 mb-2">
-            <%= f.text_field :next_location, step:0.01, class:"form-control fs-5", placeholder:"Rua dos Andares, nº 44" %>
           </div>
+          <div class="row mb-2">
+            <%= f.label :next_location, class:"col-sm-12 col-form-label"%>
+            <div class="col-sm-12 mb-2">
+              <%= f.text_field :next_location, step:0.01, class:"form-control fs-5", placeholder:"Rua dos Andares, nº 44" %>
+            </div>
+          </div>
+          <%= f.hidden_field :id , value: params[:id]%>
+          <%= f.submit 'Enviar', class:"btn btn-primary fs-5 mt-2" %>
         </div>
-        <%= f.hidden_field :id , value: params[:id]%>
-
-      <%= f.submit 'Enviar', class:"btn btn-primary fs-5 mt-2" %>
+      </div>
     </div>
   </div>
-</div>
-</div>
 <% end %>
-
