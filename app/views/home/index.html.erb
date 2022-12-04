@@ -1,4 +1,4 @@
-                                      <% if admin_signed_in? %>
+<% if admin_signed_in? %>
   <%= render 'shared/home/user_sessions/admin'%>
 <% elsif user_signed_in? && current_user.linked? %>
   <%= render 'shared/home/user_sessions/user'%>
