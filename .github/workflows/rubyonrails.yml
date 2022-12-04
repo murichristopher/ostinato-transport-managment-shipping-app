@@ -37,8 +37,6 @@ jobs:
         run: |
           git config --local user.name "bot"
           git commit -m "Auto lint files"
-      - name: fetch from main
-        run: git fetch origin main
       - name: Push changes # push the output folder to your repo
         uses: ad-m/github-push-action@master
         with:
