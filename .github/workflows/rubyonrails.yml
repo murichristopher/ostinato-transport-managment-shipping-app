@@ -43,6 +43,7 @@ jobs:
         run: |
           git config --local user.name "bot"
           git commit -m "Auto lint files"
+          git config -l | grep -F "branch.$(git branch --show-current)"
           ls
       - name: Push changes # push the output folder to your repo
         env:
