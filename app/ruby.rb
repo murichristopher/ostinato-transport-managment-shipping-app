@@ -4,7 +4,7 @@
 #   @a.each do |single|
 #     @b << [single.transport_company.trading_name, "PESO MÍNIMO: #{single.weight_min.to_s}, PESO MÁXIMO: #{single.weight_max.to_s}"]
 #   end
-
+ss
 #   return [@b, @a]
 # end
 
