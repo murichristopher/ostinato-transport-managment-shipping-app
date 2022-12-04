@@ -34,6 +34,7 @@ jobs:
       - name: stage changed files
         run: git add .
       - name: commit changed files
+        run: git config --local user.name "bot"
         run: git commit -m "Auto lint files"
       - name: fetch from main
         run: git fetch origin main
