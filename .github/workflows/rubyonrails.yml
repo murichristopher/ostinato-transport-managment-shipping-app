@@ -22,6 +22,10 @@ jobs:
         uses: ruby/setup-ruby@8f312efe1262fb463d906e9bf040319394c18d3e # v1.92
         with:
           bundler-cache: true
+      - name: Checkout PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr checkout ${{ github.event.pull_request.number }}
       - name: Run script file
         run: |
          chmod +x "${GITHUB_WORKSPACE}/script.sh"
@@ -38,10 +42,9 @@ jobs:
           git config --local user.name "bot"
           git commit -m "Auto lint files"
       - name: Push changes # push the output folder to your repo
-        uses: ad-m/github-push-action@master
+        run: git push
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           force: true
-
 
 
