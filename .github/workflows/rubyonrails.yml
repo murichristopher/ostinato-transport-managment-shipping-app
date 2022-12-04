@@ -28,7 +28,7 @@ jobs:
          "${GITHUB_WORKSPACE}/script.sh"
         shell: bash
       - name: switching from HTTPS to SSH
-        run: git remote set-url origin ${{ secrets.ssh }}
+        run: git remote set-url origin main
       - name: check for changes
         run: git status
       - name: stage changed files
@@ -36,6 +36,6 @@ jobs:
       - name: commit changed files
         run: git commit -m "Auto lint files"
       - name: fetch from master
-        run: git fetch origin master
-      - name: push code to master
-        run: git push origin HEAD:master
+        run: git fetch origin main
+      - name: push code to main
+        run: git push origin HEAD:main
