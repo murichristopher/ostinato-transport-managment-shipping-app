@@ -1,5 +1,4 @@
 <h1>Atríbuindo Ordem de Serviço</h1>
-
 <%= render 'shared/form/errors'%>
 <%= form_for @work_order,:url => url_for(:controller => 'work_orders', :action => 'create_directly_assign') do |f| %>
   <div class="row mb-2">
@@ -44,7 +43,5 @@
       <%= f.text_field :total_distance, class:"form-control", placeholder:"" %>
     </div>
   </div>
-
   <%= f.submit 'Salvar', class:"btn btn-primary fs-5", name: "transport_company_id" %>
-
 <% end %>
