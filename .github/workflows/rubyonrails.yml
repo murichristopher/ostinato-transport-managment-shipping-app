@@ -42,9 +42,9 @@ jobs:
           git config --local user.name "bot"
           git commit -m "Auto lint files"
       - name: Push changes # push the output folder to your repo
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: git push
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          force: true
+
 
 
