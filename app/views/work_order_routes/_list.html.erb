@@ -2,31 +2,31 @@
 
 <hr>
 
-<div class="list-group r-line<%= index%> ">
-  <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mt-2 mb-2 fs-5 fw-bold"><%= route.title.upcase %></h5>
+          <div class="list-group r-line<%= index%> ">
+            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mt-2 mb-2 fs-5 fw-bold"><%= route.title.upcase %></h5>
 
-      <div class="d-flex">
-        <% if route.elapsed_time > 1%>
-          <small><%= route.elapsed_time %> dias atrás</small>
-        <% else %>
-          <small>Algumas horas atrás</small>
-        <% end %>
+                <div class="d-flex">
+                  <% if route.elapsed_time > 1%>
+                    <small><%= route.elapsed_time %> dias atrás</small>
+                  <% else %>
+                    <small>Algumas horas atrás</small>
+                  <% end %>
 
-        <% if @authenticated %>
-          <%= button_to "Deletar", work_order_route_path(route), {method: :delete, class: "btn btn-danger ms-2 badge badge-danger badge-pill bg-danger", name:"work_order", value:params[:id]} %>
-        <% end %>
+                  <% if @authenticated %>
+                    <%= button_to "Deletar", work_order_route_path(route), {method: :delete, class: "btn btn-danger ms-2 badge badge-danger badge-pill bg-danger", name:"work_order", value:params[:id]} %>
+                  <% end %>
 
-      </div>
-    </div>
-    <p class="mb-1">De: <%= route.last_location %></p>
-    <% if route.next_location.present? %>
-      <p class="mb-1">Para: <%= route.next_location %></p>
-    <% end %>
-    <small>Veículo: <%= route.work_order.carrier_vehicle.full_description %></small>
+                </div>
+              </div>
+              <p class="mb-1">De: <%= route.last_location %></p>
+              <% if route.next_location.present? %>
+                <p class="mb-1">Para: <%= route.next_location %></p>
+              <% end %>
+              <small>Veículo: <%= route.work_order.carrier_vehicle.full_description %></small>
 
-  </a>
+            </a>
 
-</div>
-<% end %>
+          </div>
+          <% end %>
