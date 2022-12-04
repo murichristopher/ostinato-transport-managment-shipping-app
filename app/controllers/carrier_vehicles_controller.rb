@@ -3,7 +3,7 @@ class CarrierVehiclesController < ApplicationController
   before_action :set_carrier_vehicle_and_check_company, only: [:show, :edit, :update, :destroy]
 
   def index
-    @carrier_vehicles = current_user.transport_company.carrier_vehicles
+    @carrier_vehicles = currednt_user.transport_company.carrier_vehicles
     @transport_company = current_user.transport_company.trading_name
   end
 
