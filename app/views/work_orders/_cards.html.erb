@@ -1,28 +1,25 @@
 <% @work_orders.each_with_index do |work_order, index| %>
-<div class="col-lg-3 c-line<%= index %>">
-  <div class="card mb-3" >
-
-    <div class="card-header text-white <%= work_order.status %>">
-      <%= work_order.status.tr('_', ' ').capitalize %>
-    </div>
-
-    <div class="card-body">
-      <h3 class="card-title fs-3"><%= link_to work_order.unique_code, work_order %></h3>
-      <ul class="list-group list-group-flush">
-      <li class="list-group-item">Transportadora: <%= work_order.transport_company.trading_name%></li>
-      <li class="list-group-item">Tempo Estimado de Envio:
-        <% if work_order.delivery_time.nil? %>
-          X
-        <% else %>
-         <%= work_order.delivery_time %> dias úteis
-        <% end %>
-      </li>
-  </li>
-    </ul>
+  <div class="col-lg-3 c-line<%= index %>">
+    <div class="card mb-3" >
+      <div class="card-header text-white <%= work_order.status %>">
+        <%= work_order.status.tr('_', ' ').capitalize %>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title fs-3"><%= link_to work_order.unique_code, work_order %></h3>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Transportadora: <%= work_order.transport_company.trading_name%></li>
+          <li class="list-group-item">Tempo Estimado de Envio:
+            <% if work_order.delivery_time.nil? %>
+              X
+            <% else %>
+              <%= work_order.delivery_time %> dias úteis
+            <% end %>
+          </li>
+        </li>
+      </ul>
       <%= link_to "Ver detalhes", work_order, class:"btn btn-primary mt-2"%>
       <p class="card-text mt-2 fs-6"><small class="text-muted">Atualizado em <%=  work_order[:updated_at].strftime("%d/%m/%Y")  %></small></p>
     </div>
   </div>
-  </div>
-
+</div>
 <% end %>

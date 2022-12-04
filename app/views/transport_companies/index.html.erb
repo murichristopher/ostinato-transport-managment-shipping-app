@@ -3,15 +3,10 @@
   <%= button_to "Cadastrar Transportadora", new_transport_company_path, {method: :get, class: "btn btn-outline-success"} %>
 </div>
 <hr>
-
 <div class="row scroll">
   <%= render 'active_cards' %>
   <%= render 'inactive_cards'%>
 </div>
-
-
 <% if @active_transport_companies.empty? && @inactive_transport_companies.empty? %>
   <p>Nenhuma transportadora cadastrada</p>
 <% end %>
-
-
