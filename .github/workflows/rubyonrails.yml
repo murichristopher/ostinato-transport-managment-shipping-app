@@ -25,10 +25,11 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git restore vendor
+          git status
           git add .
 
           if ! git diff-index --quiet HEAD; then
-            git commit -m "Message here"
+            git commit -m "Message here2"
           fi
       - name: Push changes
         uses: ad-m/github-push-action@master
