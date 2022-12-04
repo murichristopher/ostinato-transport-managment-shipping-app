@@ -3,7 +3,6 @@
     <h2><%= @work_order.unique_code %></h2>
     <p class="badge text-bg-info mt-2 <%= @work_order.status %>"><%= @work_order.status.tr("_", " ") %></p>
   </div>
-
   <div class="navigation d-flex gap-2">
     <%= render 'work_order_navigation_buttons'%>
     <%= button_to "Voltar ", work_orders_path , {method: :get, class: "btn btn-outline-warning"} %>
@@ -11,19 +10,11 @@
 </div>
 </div>
 <hr>
-
-
-
 <ul class="list-group">
   <%= render 'work_order_attributes'%>
 </ul>
-
-
-<br><br>
-
+<br>
+<br>
 <ul class="list-group">
   <%= render 'work_order_routes/list'%>
 </ul>
-
-
-
